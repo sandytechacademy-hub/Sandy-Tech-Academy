@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus Notes Matrix | Sandy Tech Academy - MSBTE Engineering Resources</title>
+    <meta name="description" content="Access premium MSBTE Diploma Engineering notes, solved exam question papers, and important structural academic PDFs for Semesters 1 through 6.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#030712',
+                            dark: '#0B0F19',
+                            card: 'rgba(17, 24, 39, 0.7)',
+                            neon: '#00F0FF',
+                            neonHover: '#00D8E6',
+                            textMuted: '#9CA3AF'
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.2', filter: 'blur(50px)' },
+                            '50%': { opacity: '0.4', filter: 'blur(70px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glassmorphism-nav {
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+        .card-glow:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-gray-100 font-sans antialiased selection:bg-brand-neon selection:text-brand-black overflow-x-hidden">
+
+    <!-- Ambient Lighting Layers -->
+    <div class="fixed top-0 right-1/4 w-[600px] h-[600px] bg-brand-neon/5 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none"></div>
+    <div class="fixed bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none" style="animation-delay: 3s;"></div>
+
+    <!-- STICKY NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glassmorphism-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-neon to-blue-600 flex items-center justify-center shadow-lg shadow-brand-neon/20 transition-transform group-hover:rotate-12">
+                    <i class="fa-solid fa-code text-brand-black text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-brand-neon bg-clip-text text-transparent">SANDY TECH</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">About</a>
+                <a href="courses.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Courses Matrix</a>
+                <a href="#semester-matrix" class="text-sm font-medium text-brand-neon transition-colors">MSBTE Notes</a>
+                <a href="#supplementary-docs" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Exam Papers</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#semester-matrix" class="px-5 h-10 flex items-center justify-center text-sm font-semibold rounded-lg bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20 hover:bg-brand-neonHover transition-all">Access Repository</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-50" aria-label="Toggle Menu">
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line1"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300" id="line2"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden fixed inset-0 w-full h-screen bg-brand-black/98 backdrop-blur-2xl flex flex-col justify-center items-center gap-8 text-2xl z-40">
+            <a href="about.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">About</a>
+            <a href="courses.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Courses Matrix</a>
+            <a href="#semester-matrix" class="mobile-link text-brand-neon transition-colors">MSBTE Notes</a>
+            <a href="#supplementary-docs" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Exam Papers</a>
+            <a href="#semester-matrix" class="mobile-link px-8 py-3 text-center text-lg font-medium rounded-xl bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20">Access Repository</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION & SEARCH NOTES -->
+    <header class="relative pt-36 pb-20 flex flex-col items-center justify-center overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 w-full">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glassmorphism text-[11px] font-semibold tracking-widest text-brand-neon uppercase mb-6 border border-brand-neon/20">
+                MSBTE I & K Scheme Verified Document Matrix
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 uppercase leading-tight">
+                COMPUTATIONAL STUDY <br>
+                <span class="bg-gradient-to-r from-brand-neon via-blue-500 to-indigo-600 bg-clip-text text-transparent bg-size-200 animate-gradient-x text-glow">NOTES DOWNLOAD</span>
+            </h1>
+            <p class="text-sm sm:text-base text-gray-400 font-light max-w-2xl mx-auto leading-relaxed mb-12">
+                Locate semantic chapter summaries, structural diagrams, and parameter notes mapped directly to current diploma engineering board requirements.
+            </p>
+
+            <!-- Search Notes Field -->
+            <div class="max-w-2xl mx-auto relative group">
+                <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                <input type="text" id="notes-search" placeholder="Query specific subject codes or parameters (e.g., Operating Systems, 22516, Java)..." class="w-full h-14 pl-14 pr-6 bg-brand-black/60 border border-white/10 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-brand-neon focus:ring-1 focus:ring-brand-neon transition-all shadow-xl">
+            </div>
+        </div>
+    </header>
+
+    <!-- LATEST NOTES GRID -->
+    <section class="pb-16 max-w-7xl mx-auto px-6 lg:px-8 relative z-20">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-neon">Recently Compiled Resources</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glassmorphism p-5 rounded-xl border border-white/5 flex items-center justify-between card-glow transition-all">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-neon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Advanced Java (22517) Note Set</h4>
+                        <p class="text-gray-500 text-[11px]">Updated 48 hours ago &bull; K-Scheme Compliant</p>
+                    </div>
+                </div>
+                <a href="#" class="text-gray-400 hover:text-brand-neon transition-colors text-sm" aria-label="Download Link"><i class="fa-solid fa-arrow-down-to-line"></i></a>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl border border-white/5 flex items-center justify-between card-glow transition-all">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-neon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Software Engineering Schematics</h4>
+                        <p class="text-gray-500 text-[11px]">Updated 3 days ago &bull; Sem 4 Core</p>
+                    </div>
+                </div>
+                <a href="#" class="text-gray-400 hover:text-brand-neon transition-colors text-sm" aria-label="Download Link"><i class="fa-solid fa-arrow-down-to-line"></i></a>
+            </div>
+            <div class="glassmorphism p-5 rounded-xl border border-white/5 flex items-center justify-between card-glow transition-all">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-neon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Data Structures Memory Layouts</h4>
+                        <p class="text-gray-500 text-[11px]">Updated 5 days ago &bull; Sem 3 Deep-Dive</p>
+                    </div>
+                </div>
+                <a href="#" class="text-gray-400 hover:text-brand-neon transition-colors text-sm" aria-label="Download Link"><i class="fa-solid fa-arrow-down-to-line"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMESTER MATRIX 1-6 -->
+    <main id="semester-matrix" class="py-16 max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-white uppercase tracking-tight mb-12 border-b border-white/5 pb-4">Structured Academic Semesters</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="semesters-container">
+            <!-- Semester 1 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="basic mathematics chemistry physics english communication engineering computer">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">First Term</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S1</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 1 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Basic Mathematics</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Basic Physics & Chemistry</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>English & Communication Skills</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+
+            <!-- Semester 2 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="applied mathematics physics chemistry programming language elements electronics graphics">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">First Term</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S2</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 2 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Applied Mathematics</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>C Programming Language Fundamentals</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Basic Electronics & Graphics</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+
+            <!-- Semester 3 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="object oriented programming cpp data structures algorithms database management system dbms digital techniques logic">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">Second Year</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S3</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 3 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Object Oriented Programming (C++)</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Data Structures using C</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Database Management Systems</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+
+            <!-- Semester 4 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="java programming computer networks software engineering microprocessors systems architecture linear">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">Second Year</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S4</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 4 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Java Programming Frameworks</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Computer Networks & Security Protocols</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Software Engineering Paradigms</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+
+            <!-- Semester 5 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="advanced java operating systems os client side scripting css javascript information security management capstone project">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">Third Year</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S5</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 5 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Operating Systems Kernels (22516)</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Advanced Java Implementations (22517)</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Client Side Scripting Engines (22519)</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-brand-neon text-brand-black hover:bg-brand-neonHover font-semibold text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+
+            <!-- Semester 6 -->
+            <div class="semester-card glassmorphism rounded-2xl border border-white/5 p-6 flex flex-col justify-between card-glow transition-all duration-300" data-subjects="management programming python network security cloud computing tracking systems capstone">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold tracking-wider text-brand-neon uppercase">Third Year</span>
+                        <span class="text-[10px] bg-white/5 px-2 py-0.5 rounded text-gray-400 font-mono">MSBTE-S6</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-wide">Semester 6 Matrix</h3>
+                    <ul class="space-y-3 mb-8 text-xs text-gray-300 font-light">
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Management Processes</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Programming with Python Frameworks</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-brand-black/30 border border-white/5">
+                            <span>Network Security & Cloud Infrastructure</span>
+                            <div class="flex gap-3 text-gray-400 text-[11px]">
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-regular fa-eye mr-1"></i> Preview</a>
+                                <a href="#" class="hover:text-brand-neon transition-colors"><i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="w-full py-2.5 bg-brand-neon text-brand-black hover:bg-brand-neonHover font-semibold text-xs rounded-xl transition-all uppercase tracking-wider">Archive Package (.zip)</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- IMPORTANT PDFS & EXAM PAPERS -->
+    <section id="supplementary-docs" class="py-24 bg-brand-dark/50 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Important Academic Data Matrices -->
+            <div class="glassmorphism p-8 rounded-2xl border border-white/5">
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="fa-solid fa-triangle-exclamation text-brand-neon text-lg"></i>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-wider">Crucial Curricular PDFs</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">MSBTE I-Scheme Official Curriculum Matrix</h5>
+                            <p class="text-[11px] text-gray-500">Core structural reference documentation</p>
+                        </div>
+                        <a href="#" class="text-xs text-brand-neon border border-brand-neon/20 px-3 py-1 rounded bg-brand-neon/5 hover:bg-brand-neon hover:text-brand-black transition-all">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">MSBTE K-Scheme Implementation Roadmap</h5>
+                            <p class="text-[11px] text-gray-500">Updated credits tracking reference sheet</p>
+                        </div>
+                        <a href="#" class="text-xs text-brand-neon border border-brand-neon/20 px-3 py-1 rounded bg-brand-neon/5 hover:bg-brand-neon hover:text-brand-black transition-all">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">Capstone System Project Standards Manual</h5>
+                            <p class="text-[11px] text-gray-500">Documentation guidelines & schema verification rules</p>
+                        </div>
+                        <a href="#" class="text-xs text-brand-neon border border-brand-neon/20 px-3 py-1 rounded bg-brand-neon/5 hover:bg-brand-neon hover:text-brand-black transition-all">Download</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Board Evaluation Question Papers -->
+            <div class="glassmorphism p-8 rounded-2xl border border-white/5">
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="fa-solid fa-scroll text-purple-400 text-lg"></i>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-wider">Solved Examination Papers</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">Winter 2024 Model Solutions Set</h5>
+                            <p class="text-[11px] text-gray-500">All Computer Department tracks verified</p>
+                        </div>
+                        <a href="#" class="text-xs text-purple-400 border border-purple-500/20 px-3 py-1 rounded bg-purple-500/5 hover:bg-purple-500 hover:text-white transition-all">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">Summer 2025 Model Solutions Set</h5>
+                            <p class="text-[11px] text-gray-500">Official scoring keys verified</p>
+                        </div>
+                        <a href="#" class="text-xs text-purple-400 border border-purple-500/20 px-3 py-1 rounded bg-purple-500/5 hover:bg-purple-500 hover:text-white transition-all">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between p-4 rounded-xl bg-brand-black/40 border border-white/5 group hover:border-brand-neon/20 transition-all">
+                        <div>
+                            <h5 class="text-white text-sm font-semibold">Winter 2025 Model Solutions Set</h5>
+                            <p class="text-[11px] text-gray-500">Comprehensive code explanations added</p>
+                        </div>
+                        <a href="#" class="text-xs text-purple-400 border border-purple-500/20 px-3 py-1 rounded bg-purple-500/5 hover:bg-purple-500 hover:text-white transition-all">Download</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-black border-t border-white/5 pt-16 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-brand-neon flex items-center justify-center font-bold text-brand-black text-sm"><i class="fa-solid fa-code"></i></div>
+                    <span class="text-lg font-bold tracking-tight text-white">SANDY TECH</span>
+                </a>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    Delivering premium digital assets and resource frameworks configured specifically for technical education.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="about.html" class="hover:text-brand-neon transition-colors">About Us</a></li>
+                    <li><a href="courses.html" class="hover:text-brand-neon transition-colors">Course Matrix</a></li>
+                    <li><a href="#semester-matrix" class="hover:text-brand-neon transition-colors">MSBTE Notes</a></li>
+                    <li><a href="#supplementary-docs" class="hover:text-brand-neon transition-colors">Exam Papers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Resource Matrix</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#" class="hover:text-brand-neon transition-colors">I-Scheme Core Guides</a></li>
+                    <li><a href="#" class="hover:text-brand-neon transition-colors">K-Scheme Implementations</a></li>
+                    <li><a href="#" class="hover:text-brand-neon transition-colors">Laboratory Instruction PDFs</a></li>
+                    <li><a href="#" class="hover:text-brand-neon transition-colors">Model Solution Keynotes</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contact Gateway</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-neon"></i> admissions@sandytech.edu</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-neon"></i> +91 98765 43210</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500">&copy; 2026 Sandy Tech Academy. Academic structural integrity secured.</p>
+            <div class="flex items-center gap-4 text-gray-400 text-sm">
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MENU & SEARCH ALGORITHMS -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                line1.style.transform = 'translateY(8px) rotate(45deg)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'translateY(-8px) rotate(-45deg)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', () => isMenuOpen && toggleMenu()));
+
+        // Navbar Scroll Styling Adjustment Matrix
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            window.scrollY > 50 ? nav.classList.add('py-2', 'bg-brand-black/90') : nav.classList.remove('py-2', 'bg-brand-black/90');
+        });
+
+        // Search Notes Functional Filters Matrix
+        const searchNotesInput = document.getElementById('notes-search');
+        const semesterCards = document.querySelectorAll('.semester-card');
+
+        searchNotesInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            semesterCards.forEach(card => {
+                const searchData = card.getAttribute('data-subjects').toLowerCase();
+                const textHeader = card.querySelector('h3').textContent.toLowerCase();
+
+                if(searchData.includes(query) || textHeader.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
