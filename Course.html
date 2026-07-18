@@ -1,1 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Sandy Tech Academy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        darkmatte: '#0B0F19',
+                        cyberblue: '#00E5FF',
+                        neonblue: '#0052FF',
+                        glassbg: 'rgba(15, 23, 42, 0.45)',
+                        glassborder: 'rgba(0, 229, 255, 0.15)',
+                    },
+                    boxShadow: {
+                        neon: '0 0 20px rgba(0, 229, 255, 0.25)',
+                        neonhover: '0 0 35px rgba(0, 229, 255, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(13, 20, 38, 0.6);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(0, 229, 255, 0.12);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00E5FF;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans relative antialiased">
 
+    <!-- Background Ambient Lights -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-5%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neonblue/15 blur-[120px]"></div>
+        <div class="absolute top-[40%] left-[-15%] w-[45vw] h-[45vw] rounded-full bg-cyberblue/10 blur-[150px]"></div>
+        <div class="absolute bottom-[10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-neonblue/10 blur-[130px]"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 w-full border-b border-cyberblue/10 bg-darkmatte/70 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-neonblue to-cyberblue flex items-center justify-center shadow-neon group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-cubes text-darkmatte text-xl font-bold"></i>
+                </div>
+                <span class="text-xl font-bold tracking-wider text-white">SANDY TECH <span class="text-cyberblue">ACADEMY</span></span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Home</a>
+                <a href="about.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">About</a>
+                <a href="courses.html" class="text-cyberblue font-medium transition-colors">Courses</a>
+                <a href="programming.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Programming</a>
+                <a href="notes.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Notes</a>
+                <a href="gallery.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Gallery</a>
+                <a href="contact.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="login.html" class="px-5 py-2 rounded-lg text-sm font-medium border border-cyberblue/30 text-cyberblue hover:bg-cyberblue/10 transition-all">Student Login</a>
+                <a href="enroll.html" class="px-5 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-neonblue to-cyberblue text-white shadow-neon hover:shadow-neonhover hover:scale-[1.02] transition-all">Enroll Now</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-cyberblue focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel w-full absolute top-20 left-0 border-b border-cyberblue/20 py-6 px-4 space-y-4 flex flex-col items-center">
+            <a href="index.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Home</a>
+            <a href="about.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">About</a>
+            <a href="courses.html" class="text-cyberblue font-medium w-full text-center py-2">Courses</a>
+            <a href="programming.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Programming</a>
+            <a href="notes.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Notes</a>
+            <a href="gallery.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Gallery</a>
+            <a href="contact.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Contact</a>
+            <div class="w-full pt-4 flex flex-col space-y-3 items-center">
+                <a href="login.html" class="w-2/3 text-center px-5 py-2 rounded-lg text-sm font-medium border border-cyberblue/30 text-cyberblue hover:bg-cyberblue/10 transition-all">Student Login</a>
+                <a href="enroll.html" class="w-2/3 text-center px-5 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-neonblue to-cyberblue text-white shadow-neon">Enroll Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 pt-16 pb-12 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-4">
+                Explore Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberblue to-neonblue">Courses</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Industry-focused learning designed for Engineering students and future developers.
+            </p>
+            <div class="w-24 h-1 bg-cyberblue mx-auto mt-6 rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Course Display Grid -->
+    <section class="relative z-10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Diploma Engineering (MSBTE) -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Diploma Engineering (MSBTE)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Complete targeted semester engineering mapping and structured conceptual tracking built for top academic scores.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> Semester Syllabus</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> All Branches</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: C Programming -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">C Programming</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Master foundations of logical computing architectures, procedural sequences, registers and explicit memory layouts.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 4 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Beginner Level</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: C++ -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-terminal text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">C++</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Deep dive validation blueprints inside Object-Oriented paradigms, complex standard template libraries and data structures.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 6 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Intermediate</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Python -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-brands fa-python text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Python Mastery</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">From syntax mechanics to algorithmic scripting pipelines, data analysis blocks and automation systems.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 8 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Beginner to Advanced</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Java -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-brands fa-java text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Java Core & Advanced</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Enterprise level development protocols targeting robust multi-threaded processing and secure abstraction interfaces.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 8 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Intermediate to Pro</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 6: HTML & CSS -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-file-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">HTML & CSS</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Construct standard web layouts, responsive viewport alignment architectures and responsive UI styling systems.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 3 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Beginner Level</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 7: JavaScript -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-brands fa-js text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">JavaScript (ES6+)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Master asynchronous event engines, runtime execution layers, dynamic DOM binding patterns and modern API calls.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 5 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Intermediate</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 8: Web Development -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-laptop-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Full Stack Web Dev</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Deploy responsive server architectures, database scaling nodes, state management and comprehensive web builds.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 12 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Advanced Tracks</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 9: Git & GitHub -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Git & GitHub</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Command production workflows with branch merging, atomic commits, conflict operations and remote collaboration tracking.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 2 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Professional Tooling</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 10: SQL Database -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-database text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">SQL Database</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Master relational schema mapping, complex sub-query normalization loops, constraints and operational dataset tuning.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 4 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Core Foundation</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 11: AI Tools -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-microchip text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">AI Tools for Engineers</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Leverage Generative AI parameters, model workflows, and predictive prompts to multiply modern engineering outputs.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 3 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Modern Tech Edge</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+                <!-- Card 12: Interview Preparation -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyberblue/10 border border-cyberblue/20 flex items-center justify-center mb-5 text-cyberblue group-hover:bg-cyberblue group-hover:text-darkmatte transition-all">
+                            <i class="fa-solid fa-user-check text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Interview Preparation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Algorithmic sandbox practice, data structure layout deep-dives, portfolio structuring and behavioral mock assessments.</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 font-medium mb-5 pt-4 border-t border-slate-800">
+                            <span><i class="fa-regular fa-clock mr-1 text-cyberblue"></i> 4 Weeks</span>
+                            <span><i class="fa-solid fa-layer-group mr-1 text-neonblue"></i> Career Accelerator</span>
+                        </div>
+                        <a href="enroll.html" class="w-full py-2.5 rounded-xl bg-slate-900 border border-cyberblue/30 text-center text-sm font-semibold text-cyberblue block hover:bg-gradient-to-r hover:from-neonblue hover:to-cyberblue hover:text-white hover:shadow-neon transition-all">Enroll Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Process Section -->
+    <section class="relative z-10 py-24 border-t border-cyberblue/10 bg-darkmatte/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Our Learning Process</h2>
+                <div class="w-24 h-1 bg-cyberblue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Steps Layout Flow -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="glass-panel p-6 rounded-xl text-center relative group">
+                    <div class="w-12 h-12 rounded-full bg-neonblue/20 border border-cyberblue/30 flex items-center justify-center text-cyberblue font-bold text-lg mx-auto mb-4 group-hover:bg-cyberblue group-hover:text-darkmatte transition-colors">1</div>
+                    <h4 class="text-base font-bold text-white mb-1">Enroll</h4>
+                    <p class="text-xs text-slate-400">Select your preferred tech roadmap and access dashboards instantly.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass-panel p-6 rounded-xl text-center relative group">
+                    <div class="w-12 h-12 rounded-full bg-neonblue/20 border border-cyberblue/30 flex items-center justify-center text-cyberblue font-bold text-lg mx-auto mb-4 group-hover:bg-cyberblue group-hover:text-darkmatte transition-colors">2</div>
+                    <h4 class="text-base font-bold text-white mb-1">Learn</h4>
+                    <p class="text-xs text-slate-400">Absorb systematic foundational lectures taught by elite mentors.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass-panel p-6 rounded-xl text-center relative group">
+                    <div class="w-12 h-12 rounded-full bg-neonblue/20 border border-cyberblue/30 flex items-center justify-center text-cyberblue font-bold text-lg mx-auto mb-4 group-hover:bg-cyberblue group-hover:text-darkmatte transition-colors">3</div>
+                    <h4 class="text-base font-bold text-white mb-1">Practice</h4>
+                    <p class="text-xs text-slate-400">Resolve sandbox programming drills and complete regular task modules.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="glass-panel p-6 rounded-xl text-center relative group">
+                    <div class="w-12 h-12 rounded-full bg-neonblue/20 border border-cyberblue/30 flex items-center justify-center text-cyberblue font-bold text-lg mx-auto mb-4 group-hover:bg-cyberblue group-hover:text-darkmatte transition-colors">4</div>
+                    <h4 class="text-base font-bold text-white mb-1">Build Projects</h4>
+                    <p class="text-xs text-slate-400">Formulate real engineering systems to build elite source portfolios.</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="glass-panel p-6 rounded-xl text-center relative group">
+                    <div class="w-12 h-12 rounded-full bg-neonblue/20 border border-cyberblue/30 flex items-center justify-center text-cyberblue font-bold text-lg mx-auto mb-4 group-hover:bg-cyberblue group-hover:text-darkmatte transition-colors">5</div>
+                    <h4 class="text-base font-bold text-white mb-1">Get Certified</h4>
+                    <p class="text-xs text-slate-400">Receive formal institutional credentials to clear professional pipelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="relative z-10 bg-darkmatte border-t border-cyberblue/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            
+            <!-- Column 1: Brand -->
+            <div class="space-y-4">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded bg-gradient-to-tr from-neonblue to-cyberblue flex items-center justify-center shadow-neon">
+                        <i class="fa-solid fa-cubes text-darkmatte text-sm font-bold"></i>
+                    </div>
+                    <span class="text-lg font-bold tracking-wider text-white">SANDY TECH <span class="text-cyberblue">ACADEMY</span></span>
+                </a>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Premium Technological Institute accelerating standard academic engineering streams into professional developer ecosystems seamlessly.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="about.html" class="hover:text-cyberblue transition-colors">About Academy History</a></li>
+                    <li><a href="courses.html" class="hover:text-cyberblue transition-colors">Engineering Curriculum</a></li>
+                    <li><a href="programming.html" class="hover:text-cyberblue transition-colors">Programming Classes</a></li>
+                    <li><a href="notes.html" class="hover:text-cyberblue transition-colors">Download Board Notes</a></li>
+                    <li><a href="contact.html" class="hover:text-cyberblue transition-colors">Contact Office Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Tech Matrix -->
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Technologies</h4>
+                <div class="flex flex-wrap gap-2 text-[10px] font-mono text-slate-300">
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">Python</span>
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">Java</span>
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">C++ Core</span>
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">JavaScript</span>
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">HTML5/CSS3</span>
+                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">AI Workflows</span>
+                </div>
+            </div>
+
+            <!-- Column 4: Social Connect -->
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Connect With Us</h4>
+                <div class="flex space-x-4 mb-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-github text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-instagram text-sm"></i></a>
+                </div>
+                <p class="text-[11px] text-slate-500"><i class="fa-solid fa-envelope mr-1 text-cyberblue"></i> support@sandytechacademy.com</p>
+            </div>
+        </div>
+
+        <!-- Copyright Line -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900/60 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Sandy Tech Academy. All engineering rights reserved architectural systems.</p>
+            <div class="flex space-x-6 text-slate-600">
+                <a href="#" class="hover:text-cyberblue transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-cyberblue transition-colors">Terms of Operations</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation Menu Script Toggle -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'bg-darkmatte/90');
+            } else {
+                header.classList.remove('shadow-lg', 'bg-darkmatte/90');
+            }
+        });
+    </script>
+</body>
+</html>
