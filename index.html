@@ -1,115 +1,896 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandy Tech Academy | Future of Learning</title>
+    <title>Sandy Tech Academy | Premium Tech & Engineering Institute</title>
+    <meta name="description" content="Master software engineering, web development, and MSBTE curriculum at Sandy Tech Academy. Transform from a student into a professional developer with industry-grade training.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#030712',
+                            dark: '#0B0F19',
+                            card: 'rgba(17, 24, 39, 0.7)',
+                            neon: '#00F0FF',
+                            neonHover: '#00D8E6',
+                            textMuted: '#9CA3AF'
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.4', filter: 'blur(40px)' },
+                            '50%': { opacity: '0.8', filter: 'blur(60px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
-        
-        body { font-family: 'Outfit', sans-serif; background: #0f172a; color: white; overflow-x: hidden; }
-        
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .btn-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); transition: 0.3s; }
-        .btn-glow:hover { box-shadow: 0 0 35px rgba(59, 130, 246, 0.8); }
-
-        .floating { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-
-        #code-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.1; }
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glassmorphism-nav {
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        .card-glow:hover {
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+            transform: translateY(-4px);
+        }
+        .glow-overlay {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.08), transparent 60%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
     </style>
 </head>
-<body>
+<body class="bg-brand-black text-gray-100 font-sans antialiased selection:bg-brand-neon selection:text-brand-black overflow-x-hidden">
 
-    <!-- Sticky Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 p-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tighter">SANDY<span class="text-blue-500">TECH</span></h1>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#" class="hover:text-blue-400">Courses</a>
-                <a href="#" class="hover:text-blue-400">Mentors</a>
-                <a href="#" class="hover:text-blue-400">Blog</a>
+    <!-- Ambient Background Lighting -->
+    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brand-neon/10 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none"></div>
+    <div class="fixed bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none" style="animation-delay: 1.5s;"></div>
+
+    <!-- 1. STICKY TRANSPARENT NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glassmorphism-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-neon to-blue-600 flex items-center justify-center shadow-lg shadow-brand-neon/20 transition-transform group-hover:rotate-12">
+                    <i class="fa-solid fa-code text-brand-black text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-brand-neon bg-clip-text text-transparent">SANDY TECH</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Home</a>
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">About</a>
+                <a href="#courses" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Courses</a>
+                <a href="#notes" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Notes</a>
+                <a href="#gallery" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Gallery</a>
+                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Contact</a>
             </div>
-            <button class="bg-blue-600 px-6 py-2 rounded-full btn-glow">Join Now</button>
+
+            <!-- Action Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contact" class="px-5 h-10 flex items-center justify-center text-sm font-semibold rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all">Portal Login</a>
+                <a href="#courses" class="px-5 h-10 flex items-center justify-center text-sm font-semibold rounded-lg bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20 hover:bg-brand-neonHover hover:shadow-brand-neon/30 transition-all">Enroll Now</a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-50" aria-label="Toggle Menu">
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line1"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300" id="line2"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden fixed inset-0 w-full h-screen bg-brand-black/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 text-2xl z-40 transition-all duration-300">
+            <a href="#" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Home</a>
+            <a href="#about" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">About</a>
+            <a href="#courses" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Courses</a>
+            <a href="#notes" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Notes</a>
+            <a href="#gallery" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Gallery</a>
+            <a href="#contact" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Contact</a>
+            <div class="flex flex-col gap-4 w-64 mt-4">
+                <a href="#contact" class="mobile-link px-6 py-3 text-center text-lg font-medium rounded-xl bg-white/5 border border-white/10">Portal Login</a>
+                <a href="#courses" class="mobile-link px-6 py-3 text-center text-lg font-medium rounded-xl bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20">Enroll Now</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="h-screen flex items-center justify-center text-center px-4">
-        <canvas id="code-bg"></canvas>
-        <div class="relative z-10">
-            <h2 class="text-6xl md:text-8xl font-extrabold mb-6">Master the <span class="text-blue-500">Future</span></h2>
-            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Premium technical education designed to bridge the gap between classroom theory and industry excellence.</p>
-            <div class="flex gap-4 justify-center">
-                <button class="bg-blue-600 px-8 py-4 rounded-xl font-bold btn-glow">Get Started</button>
-                <button class="border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-slate-900 transition">View Curriculum</button>
+    <!-- 2. HERO SECTION -->
+    <header class="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden">
+        <!-- Floating Programming Icons Background Grid -->
+        <div class="absolute inset-0 z-0 opacity-10 pointer-events-none select-none">
+            <i class="fa-brands fa-python absolute text-6xl text-brand-neon animate-float top-1/4 left-[10%]" style="animation-delay: 0s;"></i>
+            <i class="fa-brands fa-js absolute text-7xl text-yellow-400 animate-float top-1/3 right-[12%]" style="animation-delay: 1.5s;"></i>
+            <i class="fa-brands fa-react absolute text-8xl text-cyan-400 animate-float bottom-1/4 left-[15%]" style="animation-delay: 3s;"></i>
+            <i class="fa-solid fa-code-branch absolute text-6xl text-purple-400 animate-float bottom-1/3 right-[18%]" style="animation-delay: 4.5s;"></i>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 py-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold tracking-wider text-brand-neon uppercase mb-6 border border-brand-neon/30 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-brand-neon inline-block animate-ping"></span>
+                Welcome to Sandy Tech Academy
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-white mb-6 uppercase leading-none">
+                THE FUTURE OF <br>
+                <span class="bg-gradient-to-r from-brand-neon via-blue-500 to-purple-600 bg-clip-text text-transparent bg-size-200 animate-gradient-x text-glow">CODING</span> IS HERE
+            </h1>
+
+            <p class="text-lg sm:text-2xl text-gray-400 font-light max-w-3xl mx-auto mb-12 leading-relaxed">
+                Transform from a Tech Student into a Professional Developer. Master top industries technologies through project-based interactive learning tracks.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+                <a href="#courses" class="group relative w-full sm:w-auto px-8 py-4 bg-brand-neon text-brand-black font-semibold rounded-xl transition-all duration-300 shadow-xl shadow-brand-neon/20 hover:shadow-brand-neon/40 hover:scale-105 flex items-center justify-center gap-2">
+                    Enroll Now 
+                    <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                </a>
+                <a href="#notes" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download text-brand-neon"></i> Download Notes
+                </a>
+            </div>
+        </div>
+
+        <!-- Subtle Bottom Gradient Mask -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-black to-transparent pointer-events-none"></div>
+    </header>
+
+    <!-- 3. STATISTICS SECTION -->
+    <section class="relative z-10 py-16 glassmorphism border-y border-white/5 glow-overlay">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+                <div class="p-4 transform hover:scale-105 transition-transform">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">5000+</div>
+                    <div class="text-sm font-medium uppercase tracking-wider text-brand-neon text-glow">Students Enrolled</div>
+                </div>
+                <div class="p-4 transform hover:scale-105 transition-transform">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">200+</div>
+                    <div class="text-sm font-medium uppercase tracking-wider text-brand-neon text-glow">Premium Notes</div>
+                </div>
+                <div class="p-4 transform hover:scale-105 transition-transform">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">50+</div>
+                    <div class="text-sm font-medium uppercase tracking-wider text-brand-neon text-glow">Expert Courses</div>
+                </div>
+                <div class="p-4 transform hover:scale-105 transition-transform">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 tracking-tight">100%</div>
+                    <div class="text-sm font-medium uppercase tracking-wider text-brand-neon text-glow">Placement Guidance</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Popular Courses Grid -->
-    <section class="py-24 max-w-7xl mx-auto px-4">
-        <h3 class="text-4xl font-bold mb-16 text-center">Popular Courses</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Card -->
-            <div class="glass p-8 rounded-3xl group hover:border-blue-500 transition-all">
-                <div class="text-blue-500 text-4xl mb-4">💻</div>
-                <h4 class="text-2xl font-semibold mb-2">Web Full-Stack</h4>
-                <p class="text-slate-400 mb-6">Master modern frameworks and deployment.</p>
-                <button class="text-blue-400 font-bold underline">Learn More</button>
+    <!-- 4. POPULAR COURSES SECTION -->
+    <section id="courses" class="py-24 max-w-7xl mx-auto px-6 lg:px-8 relative">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Popular Courses</h2>
+            <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Explore high-impact programming courses custom architected to turn beginners into deployable production experts.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1: C Programming -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <span class="font-bold">C</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">C Programming Foundation</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Master core procedural coding paradigms, memory architectures, pointer operations, and clean structuring logic.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
             </div>
-            <div class="glass p-8 rounded-3xl group hover:border-blue-500 transition-all">
-                <div class="text-blue-500 text-4xl mb-4">🤖</div>
-                <h4 class="text-2xl font-semibold mb-2">Data Science & AI</h4>
-                <p class="text-slate-400 mb-6">Machine learning and predictive analytics.</p>
-                <button class="text-blue-400 font-bold underline">Learn More</button>
+
+            <!-- Card 2: C++ -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-cyan-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <span class="font-bold">C++</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Advanced C++ Mastery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Deep dive into enterprise Object-Oriented paradigms, Standard Template Library optimization, and performant systems coding.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
             </div>
-            <div class="glass p-8 rounded-3xl group hover:border-blue-500 transition-all">
-                <div class="text-blue-500 text-4xl mb-4">📱</div>
-                <h4 class="text-2xl font-semibold mb-2">App Development</h4>
-                <p class="text-slate-400 mb-6">Build cross-platform mobile apps.</p>
-                <button class="text-blue-400 font-bold underline">Learn More</button>
+
+            <!-- Card 3: Java -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orange-600/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-brands fa-java"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Java Enterprise Architecture</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Build distributed cloud networks, backend API matrices, robust software systems via MVC, and scalable frameworks.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 4: Python -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-yellow-600/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Python AI & Automation</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Leverage data analytics, advanced scripting loops, foundational Machine Learning arrays, and rapid automation routines.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 5: HTML / CSS / JS (Combined Web Suite entry as requested) -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">UI/UX Interface Stack (HTML/CSS)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Craft pixel-perfect responsive layouts utilizing raw structuring mechanics, Flexbox, CSS Grid frameworks, and custom variables.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 6: JavaScript -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-yellow-400/20 border border-yellow-400/30 flex items-center justify-center text-yellow-300 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">JavaScript Engine Mastery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Conquer core ES6 implementations, asynchronous programming logic, event handlers, execution contexts, and DOM trees.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 7: Web Development -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Full Stack Web Engineering</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Build complete applications using modern dynamic stacks, cloud deployment architectures, and active state management loops.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 8: Database Systems -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Relational & NoSQL Databases</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Implement performance-driven schema models, write optimized query layers, manage indices, and manage transactions.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 9: Data Structures -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/20 border border-red-400/30 flex items-center justify-center text-red-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Data Structures & Algorithms</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Pass elite algorithmic screenings by masterfully handling arrays, linked lists, advanced trees, and complex sorting matrices.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 10: Operating System -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Operating Systems Architecture</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Understand lower-level kernel operations, memory management, process thread concurrency, and file system mechanics.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Card 11: Computer Networks -->
+            <div class="glassmorphism rounded-2xl p-6 transition-all duration-300 card-glow flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-pink-600/20 border border-pink-500/30 flex items-center justify-center text-pink-400 text-xl mb-6 transition-transform group-hover:scale-110">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Computer Networks & Protocols</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Analyze core infrastructure elements, TCP/IP stack routing pathways, payload handling architectures, and network layer configurations.</p>
+                </div>
+                <a href="#contact" class="inline-flex items-center justify-between px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 group-hover:bg-brand-neon group-hover:text-brand-black font-semibold text-sm transition-all duration-300">
+                    Learn More <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
-        <p>&copy; 2026 Sandy Tech Academy. All rights reserved.</p>
+    <!-- 5. WHY CHOOSE SANDY TECH ACADEMY -->
+    <section id="about" class="py-24 bg-brand-dark/50 relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Why Choose Sandy Tech</h2>
+                <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto">We deploy state-of-the-art infrastructure alongside premium educational design paradigms to accelerate real career growth.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Experienced Faculty</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Learn complex engineering processes directly from veteran engineering leaders with years of production experience.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Live Projects</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Escape basic tutorial loops. Write application code deployed directly onto active production servers.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Industry Notes</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Gain immediate institutional leverage with organized, hyper-focused technology dossiers built for rapid absorption.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">MSBTE Preparation</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Ace university and board metrics utilizing curriculum structures optimized for high test score delivery.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Interview Training</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Refine data structure communication through simulation boards modeled after technical enterprise standards.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Programming Practice</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Build fundamental procedural fluency via continuous sandboxed code challenges monitored by platform mentors.</p>
+                </div>
+                <!-- Feature 7 -->
+                <div class="p-6 rounded-2xl glassmorphism border border-white/5 hover:border-brand-neon/20 transition-all group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-neon/10 flex items-center justify-center text-brand-neon mb-4 text-lg">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Placement Support</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Leverage deep technology corporate hiring matrices to unlock priority access to tech interviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PROGRAMMING LANGUAGES ANIMATED CARDS -->
+    <section class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Ecosystem Tech Stack</h2>
+            <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Acquire expert fluencies inside core infrastructural languages used by the most innovative organizations globally.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+            <!-- C -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <div class="text-3xl font-black text-blue-400 mb-2 group-hover:animate-bounce">C</div>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Systems</div>
+            </div>
+            <!-- C++ -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <div class="text-3xl font-black text-cyan-400 mb-2 group-hover:animate-bounce">C++</div>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Performance</div>
+            </div>
+            <!-- Java -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-java text-3xl text-orange-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Enterprise</div>
+            </div>
+            <!-- Python -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-python text-3xl text-yellow-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Intelligence</div>
+            </div>
+            <!-- HTML -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-html5 text-3xl text-red-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Structure</div>
+            </div>
+            <!-- CSS -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-css3-alt text-3xl text-blue-500 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Style</div>
+            </div>
+            <!-- JavaScript -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-js text-3xl text-yellow-300 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Dynamic</div>
+            </div>
+            <!-- SQL -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-solid fa-database text-3xl text-emerald-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Relational</div>
+            </div>
+            <!-- PHP -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-php text-3xl text-purple-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Backend</div>
+            </div>
+            <!-- React -->
+            <div class="glassmorphism rounded-xl p-6 text-center transition-all duration-300 hover:border-brand-neon hover:scale-105 group">
+                <i class="fa-brands fa-react text-3xl text-cyan-400 mb-2 block group-hover:animate-bounce"></i>
+                <div class="text-xs tracking-wider text-gray-500 uppercase">Framework</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. MSBTE NOTES DOWNLOAD SECTION -->
+    <section id="notes" class="py-24 bg-brand-dark/50 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">MSBTE Notes Download</h2>
+                <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto">Instantly access authoritative engineering and polytechnic syllabi resources structured explicitly semester by semester.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Semesters 1 to 6 -->
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 1</h3>
+                        <p class="text-xs text-gray-400 mt-1">Basic Sciences & Mathematics</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 1 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 2</h3>
+                        <p class="text-xs text-gray-400 mt-1">Intro to Programming & Engineering Graphics</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 2 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 3</h3>
+                        <p class="text-xs text-gray-400 mt-1">Data Structures & Digital Techniques</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 3 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 4</h3>
+                        <p class="text-xs text-gray-400 mt-1">Computer Networks & Microprocessors</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 4 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 5</h3>
+                        <p class="text-xs text-gray-400 mt-1">Operating Systems & Advanced Java</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 5 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+
+                <div class="glassmorphism p-6 rounded-xl flex items-center justify-between group border border-white/5 hover:border-brand-neon/30 transition-all">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Semester 6</h3>
+                        <p class="text-xs text-gray-400 mt-1">Cloud Computing & Capstone Projects</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-lg bg-brand-neon text-brand-black flex items-center justify-center font-bold shadow shadow-brand-neon/20 hover:scale-105 transition-transform" aria-label="Download Semester 6 Notes">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. STUDENT REVIEWS -->
+    <section class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Student Success</h2>
+            <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Read verifiable feedback detailing how our intensive curriculum maps directly to enterprise engineering roles.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="glassmorphism rounded-2xl p-8 border border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 gap-1 text-xs mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"The Full Stack curriculum here fundamentally reconstructed how I approach algorithmic problems. I secured my software engineering placement even before completing Semester 6."</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-neon to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+                        RD
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Rahul Deshmukh</h4>
+                        <p class="text-gray-500 text-xs">Cloud Engineer at Tech Corp</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="glassmorphism rounded-2xl p-8 border border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 gap-1 text-xs mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"Sandy Tech Academy blends technical rigor with deep conceptual clarity. The MSBTE structured notes allowed me to score an elite aggregate GPA across semesters."</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-neon to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                        AP
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Ananya Patel</h4>
+                        <p class="text-gray-500 text-xs">Frontend Dev at Innovate LLC</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="glassmorphism rounded-2xl p-8 border border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 gap-1 text-xs mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm italic leading-relaxed mb-6">"The lab exercises and dedicated mentorship channels provided me with the direct operational confidence required to pass elite corporate programming screenings."</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-neon to-emerald-600 flex items-center justify-center text-white font-bold text-sm">
+                        VS
+                    </div>
+                    <div>
+                        <h4 class="text-white text-sm font-semibold">Vikram Shinde</h4>
+                        <p class="text-gray-500 text-xs">Systems Analyst at Global Systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. GALLERY SECTION -->
+    <section id="gallery" class="py-24 bg-brand-dark/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Campus & Labs Gallery</h2>
+                <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto">Explore our high-performance computational suites, immersive development environments, and campus life.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/3] glassmorphism group border border-white/5 cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent z-10 opacity-80"></div>
+                    <!-- Icon Placeholder matching the clean Apple/Tesla minimal aesthetic instead of noisy stock photos -->
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-gray-600 group-hover:text-brand-neon transition-colors">
+                        <i class="fa-solid fa-computer text-5xl mb-3 transition-transform duration-500 group-hover:scale-110"></i>
+                        <span class="text-xs tracking-widest uppercase text-gray-400">Advanced Systems Laboratory</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 z-20 transition-transform duration-300 group-hover:translate-x-2">
+                        <p class="text-sm font-bold text-white">Main Lab Workspace</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/3] glassmorphism group border border-white/5 cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent z-10 opacity-80"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-gray-600 group-hover:text-brand-neon transition-colors">
+                        <i class="fa-solid fa-users text-5xl mb-3 transition-transform duration-500 group-hover:scale-110"></i>
+                        <span class="text-xs tracking-widest uppercase text-gray-400">Collaborative Huddles</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 z-20 transition-transform duration-300 group-hover:translate-x-2">
+                        <p class="text-sm font-bold text-white">Interactive Hackathon Bay</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/3] glassmorphism group border border-white/5 cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent z-10 opacity-80"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-gray-600 group-hover:text-brand-neon transition-colors">
+                        <i class="fa-solid fa-book-open text-5xl mb-3 transition-transform duration-500 group-hover:scale-110"></i>
+                        <span class="text-xs tracking-widest uppercase text-gray-400">Knowledge Repository</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 z-20 transition-transform duration-300 group-hover:translate-x-2">
+                        <p class="text-sm font-bold text-white">Digital Research Library</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CALL TO ACTION (CTA) -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-brand-black to-purple-950/30"></div>
+        <div class="max-w-4xl mx-auto text-center px-6 relative z-10">
+            <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tight">Become A Professional Developer Today</h2>
+            <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto font-light">
+                Join thousands of thriving engineers engineering the digital economy. Enrolling inputs your system directly onto our structured engineering path.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#courses" class="px-8 py-4 bg-brand-neon text-brand-black font-semibold rounded-xl text-sm transition-all shadow-lg shadow-brand-neon/20 hover:scale-105 w-full sm:w-auto text-center">Enroll Process</a>
+                <a href="#contact" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl text-sm transition-all hover:bg-white/10 w-full sm:w-auto text-center">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. CONTACT SECTION -->
+    <section id="contact" class="py-24 max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 uppercase">Get In Touch</h2>
+            <div class="h-1 w-24 bg-brand-neon mx-auto rounded-full"></div>
+            <p class="text-gray-400 mt-4 max-w-xl mx-auto">Initiate direct telemetry with our admissions board to clear up curriculum parameters or schedule lab access tours.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Form Block -->
+            <form class="glassmorphism p-8 rounded-2xl border border-white/5 space-y-6" action="#" method="POST" onsubmit="event.preventDefault();">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
+                        <input type="text" required class="w-full h-12 rounded-lg bg-brand-black/50 border border-white/10 px-4 text-sm text-white focus:outline-none focus:border-brand-neon transition-colors" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
+                        <input type="email" required class="w-full h-12 rounded-lg bg-brand-black/50 border border-white/10 px-4 text-sm text-white focus:outline-none focus:border-brand-neon transition-colors" placeholder="john@example.com">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Phone Number</label>
+                        <input type="tel" required class="w-full h-12 rounded-lg bg-brand-black/50 border border-white/10 px-4 text-sm text-white focus:outline-none focus:border-brand-neon transition-colors" placeholder="+91 98765 43210">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Target Track</label>
+                        <select class="w-full h-12 rounded-lg bg-brand-black/50 border border-white/10 px-4 text-sm text-gray-300 focus:outline-none focus:border-brand-neon transition-colors">
+                            <option>Full Stack Web Engineering</option>
+                            <option>C / C++ Infrastructure</option>
+                            <option>Java Enterprise Stack</option>
+                            <option>MSBTE Curriculum Track</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Message Payload</label>
+                    <textarea required rows="4" class="w-full rounded-lg bg-brand-black/50 border border-white/10 p-4 text-sm text-white focus:outline-none focus:border-brand-neon transition-colors resize-none" placeholder="Detail your learning outcomes..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full h-12 rounded-lg bg-brand-neon text-brand-black font-bold text-sm shadow-lg shadow-brand-neon/10 hover:bg-brand-neonHover transition-colors flex items-center justify-center gap-2">
+                    Submit Query <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+
+            <!-- Maps Placeholder Visual Box -->
+            <div class="w-full h-full min-h-[400px] rounded-2xl overflow-hidden glassmorphism border border-white/5 relative group">
+                <div class="absolute inset-0 bg-brand-dark/40 flex flex-col justify-center items-center text-center p-8 z-10">
+                    <div class="w-14 h-14 rounded-full bg-brand-neon/10 border border-brand-neon/20 flex items-center justify-center text-brand-neon text-2xl mb-4">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg mb-1">Academy Headquarters</h4>
+                    <p class="text-gray-400 text-sm max-w-sm mb-4">Tech Park Infrastructure, Sector 4, Suite 101, Mumbai, MH, India</p>
+                    <div class="text-xs text-brand-neon border border-brand-neon/20 px-4 py-1.5 rounded-full bg-brand-neon/5 uppercase font-medium tracking-wider">
+                        Interactive Engine Loading...
+                    </div>
+                </div>
+                <!-- Graphic map representation lines background -->
+                <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FOOTER SECTION -->
+    <footer class="bg-brand-black border-t border-white/5 pt-16 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <!-- Col 1: Brand Info -->
+            <div>
+                <a href="#" class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-brand-neon flex items-center justify-center font-bold text-brand-black text-sm">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <span class="text-lg font-bold tracking-tight text-white">SANDY TECH</span>
+                </a>
+                <p class="text-gray-400 text-xs leading-relaxed max-w-xs">
+                    Accelerating engineering competencies using hyper-modern pedagogy paths constructed explicitly for architectural scale.
+                </p>
+            </div>
+
+            <!-- Col 2: Quick Navigation -->
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#" class="hover:text-brand-neon transition-colors">Home Base</a></li>
+                    <li><a href="#about" class="hover:text-brand-neon transition-colors">About Directives</a></li>
+                    <li><a href="#courses" class="hover:text-brand-neon transition-colors">Active Matrix Courses</a></li>
+                    <li><a href="#notes" class="hover:text-brand-neon transition-colors">Academic Notes</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Courses Suite -->
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Tracks</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#courses" class="hover:text-brand-neon transition-colors">Full-Stack Suite</a></li>
+                    <li><a href="#courses" class="hover:text-brand-neon transition-colors">Data Structures Array</a></li>
+                    <li><a href="#courses" class="hover:text-brand-neon transition-colors">Systems Operations</a></li>
+                    <li><a href="#courses" class="hover:text-brand-neon transition-colors">Relational Engines</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Operations Infrastructure Details -->
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contact Details</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-neon"></i> admissions@sandytech.edu</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-neon"></i> +91 98765 43210</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-neon"></i> Mumbai, Maharashtra, India</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Base Bar -->
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500">&copy; 2026 Sandy Tech Academy. Architectural integrity secured.</p>
+            
+            <!-- Social Matrix Links -->
+            <div class="flex items-center gap-4 text-gray-400 text-sm">
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
     </footer>
 
+    <!-- INTERACTIVE SCRIPT LOGIC -->
     <script>
-        // Navbar scroll effect
-        window.onscroll = () => {
-            const nav = document.getElementById('navbar');
-            if(window.scrollY > 50) nav.classList.add('bg-slate-900/80', 'backdrop-blur-md');
-            else nav.classList.remove('bg-slate-900/80', 'backdrop-blur-md');
-        };
+        // DOM Variable Allocations
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        // Coding Background Animation
-        const canvas = document.getElementById('code-bg');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const letters = "0101<>{}[]SANDYTECH";
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
+        // Navigation Toggle Logic State
+        let isMenuOpen = false;
 
-        function draw() {
-            ctx.fillStyle = "rgba(15, 23, 42, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#3b82f6";
-            ctx.font = fontSize + "px monospace";
-            for(let i = 0; i < drops.length; i++) {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                // Cross design implementation
+                line1.style.transform = 'translateY(8px) rotate(45deg)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'translateY(-8px) rotate(-45deg)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                // Default line state restoration
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+                document.body.style.overflow = 'auto';
             }
         }
-        setInterval(draw, 50);
+
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', () => {
+            if(isMenuOpen) toggleMenu();
+        }));
+
+        // Navbar Structural Transformation on Page Scroll matrix
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-brand-black/90');
+                nav.classList.remove('py-0');
+            } else {
+                nav.classList.remove('py-2', 'bg-brand-black/90');
+            }
+        });
     </script>
 </body>
 </html>
