@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Terminal | Sandy Tech Academy - Contact Architecture</title>
+    <meta name="description" content="Connect with the administrative, admissions, and system support structures at Sandy Tech Academy. Secure network interfaces enabled.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#030712',
+                            dark: '#0B0F19',
+                            card: 'rgba(17, 24, 39, 0.7)',
+                            neon: '#00F0FF',
+                            neonHover: '#00D8E6',
+                        }
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.2', filter: 'blur(50px)' },
+                            '50%': { opacity: '0.4', filter: 'blur(70px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glassmorphism-nav {
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glassmorphism-input {
+            background: rgba(3, 7, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glassmorphism-input:focus {
+            border-color: #00F0FF;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+            background: rgba(3, 7, 18, 0.6);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #00F0FF;
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-gray-100 font-sans antialiased selection:bg-brand-neon selection:text-brand-black overflow-x-hidden">
+
+    <!-- Ambient Lighting Layers -->
+    <div class="fixed top-0 right-1/4 w-[600px] h-[600px] bg-brand-neon/5 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none"></div>
+    <div class="fixed bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full animate-pulse-glow -z-10 mix-blend-screen pointer-events-none" style="animation-delay: 3s;"></div>
+
+    <!-- STICKY NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glassmorphism-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="gallery.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-neon to-blue-600 flex items-center justify-center shadow-lg shadow-brand-neon/20 transition-transform group-hover:rotate-12">
+                    <i class="fa-solid fa-code text-brand-black text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-brand-neon bg-clip-text text-transparent">SANDY TECH</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">About</a>
+                <a href="courses.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Courses Matrix</a>
+                <a href="notes.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Notes Repository</a>
+                <a href="gallery.html" class="text-sm font-medium text-gray-300 hover:text-brand-neon transition-colors">Visual Matrix</a>
+                <a href="#contact-terminal" class="text-sm font-medium text-brand-neon transition-colors">Connect Terminal</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contact-terminal" class="px-5 h-10 flex items-center justify-center text-sm font-semibold rounded-lg bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20 hover:bg-brand-neonHover transition-all">Secure Uplink</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-50" aria-label="Toggle Menu">
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line1"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300" id="line2"></span>
+                <span class="w-6 h-0.5 bg-gray-200 transition-all duration-300 origin-center" id="line3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden fixed inset-0 w-full h-screen bg-brand-black/98 backdrop-blur-2xl flex flex-col justify-center items-center gap-8 text-2xl z-40">
+            <a href="about.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">About</a>
+            <a href="courses.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Courses Matrix</a>
+            <a href="notes.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Notes Repository</a>
+            <a href="gallery.html" class="mobile-link text-gray-300 hover:text-brand-neon transition-colors">Visual Matrix</a>
+            <a href="#contact-terminal" class="mobile-link text-brand-neon transition-colors">Connect Terminal</a>
+            <a href="#contact-terminal" class="mobile-link px-8 py-3 text-center text-lg font-medium rounded-xl bg-brand-neon text-brand-black shadow-lg shadow-brand-neon/20">Secure Uplink</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-36 pb-12 flex flex-col items-center justify-center overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 w-full">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glassmorphism text-[11px] font-semibold tracking-widest text-brand-neon uppercase mb-6 border border-brand-neon/20">
+                Direct System Inquiries & Operations Uplink
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 uppercase leading-tight">
+                ESTABLISH SYSTEM <br>
+                <span class="bg-gradient-to-r from-brand-neon via-blue-500 to-indigo-600 bg-clip-text text-transparent bg-size-200 animate-gradient-x text-glow">COMMUNICATION UPLINK</span>
+            </h1>
+            <p class="text-sm sm:text-base text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
+                Initiate dynamic contact parameters. Our administrative arrays respond to hardware, curriculum, and corporate alignment submissions under optimal time limits.
+            </p>
+        </div>
+    </header>
+
+    <!-- INTERACTION TERMINAL (CONTACT INFO & FORM) -->
+    <main id="contact-terminal" class="py-12 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT MODULE: INFORMATION DIRECTORY & MAP -->
+            <div class="lg:col-span-5 space-y-8">
+                <div class="glassmorphism rounded-3xl p-8 border border-white/5 shadow-2xl space-y-6">
+                    <h3 class="text-xl font-bold tracking-tight text-white uppercase border-b border-white/10 pb-4">Directory Nodes</h3>
+                    
+                    <!-- Address Node -->
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-neon transition-colors group-hover:bg-brand-neon/10 flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wider text-gray-400 uppercase">Physical Campus Array</h4>
+                            <p class="text-sm text-gray-200 mt-1 font-light leading-relaxed">
+                                Tech Park Phase IV, Sector 62,<br>Electronic City, Bangalore, KA 560100
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Phone Node -->
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-neon transition-colors group-hover:bg-brand-neon/10 flex-shrink-0">
+                            <i class="fa-solid fa-phone text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wider text-gray-400 uppercase">Voice Terminal Matrix</h4>
+                            <p class="text-sm text-gray-200 mt-1 font-light tracking-wide">+91 98765 43210</p>
+                            <p class="text-xs text-gray-500 mt-0.5">Mon - Fri [09:00 - 18:00 IST]</p>
+                        </div>
+                    </div>
+
+                    <!-- Email Node -->
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-neon transition-colors group-hover:bg-brand-neon/10 flex-shrink-0">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wider text-gray-400 uppercase">Packet Transmissions</h4>
+                            <p class="text-sm text-gray-200 mt-1 font-light tracking-wide hover:text-brand-neon transition-colors"><a href="mailto:admissions@sandytech.edu">admissions@sandytech.edu</a></p>
+                            <p class="text-xs text-gray-500 mt-0.5 hover:text-brand-neon transition-colors"><a href="mailto:support@sandytech.edu">support@sandytech.edu</a></p>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Node -->
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 transition-colors group-hover:bg-emerald-500/10 flex-shrink-0">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold tracking-wider text-gray-400 uppercase">Instant Message Gateway</h4>
+                            <p class="text-sm text-gray-200 mt-1 font-light tracking-wide hover:text-emerald-400 transition-colors"><a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">+91 98765 43210</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOGLE MAPS PLACEHOLDER (APPLE STYLING) -->
+                <div class="glassmorphism rounded-3xl p-3 border border-white/5 shadow-2xl overflow-hidden relative group">
+                    <div class="w-full h-64 bg-brand-dark rounded-2xl relative overflow-hidden flex items-center justify-center">
+                        <!-- High Fidelity Map Grid Graphic Mock -->
+                        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-60"></div>
+                        <div class="absolute w-24 h-24 rounded-full bg-brand-neon/10 blur-xl animate-pulse"></div>
+                        <div class="z-10 text-center px-6">
+                            <div class="w-10 h-10 rounded-full bg-brand-neon/20 flex items-center justify-center mx-auto mb-3 border border-brand-neon/40 shadow-lg shadow-brand-neon/15">
+                                <i class="fa-solid fa-location-crosshairs text-brand-neon animate-spin" style="animation-duration: 4s;"></i>
+                            </div>
+                            <span class="text-xs font-semibold tracking-wider text-white uppercase block">Satellite Map Interface Locked</span>
+                            <span class="text-[10px] text-gray-500 block mt-1 tracking-wide">Tech Park Phase IV, 12.9716° N, 77.5946° E</span>
+                            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-semibold text-gray-300 hover:text-white rounded-lg transition-all uppercase tracking-wider">
+                                View Vector Map <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT MODULE: TRANSMISSION INPUT GRID (CONTACT FORM) -->
+            <div class="lg:col-span-7">
+                <div class="glassmorphism rounded-3xl p-8 sm:p-10 border border-white/5 shadow-2xl relative">
+                    <h3 class="text-xl font-bold tracking-tight text-white uppercase border-b border-white/10 pb-4 mb-6">Data Input Fields</h3>
+                    
+                    <form id="secure-form" class="space-y-6" autocomplete="off">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Name Field -->
+                            <div class="space-y-2">
+                                <label for="form-name" class="text-[11px] font-bold tracking-widest text-gray-400 uppercase">Entity Name *</label>
+                                <input type="text" id="form-name" required class="w-full h-12 px-4 rounded-xl glassmorphism-input text-sm text-white focus:outline-none" placeholder="e.g., Alexander Mercer">
+                            </div>
+                            <!-- Email Field -->
+                            <div class="space-y-2">
+                                <label for="form-email" class="text-[11px] font-bold tracking-widest text-gray-400 uppercase">Return Email Link *</label>
+                                <input type="email" id="form-email" required class="w-full h-12 px-4 rounded-xl glassmorphism-input text-sm text-white focus:outline-none" placeholder="e.g., alex@domain.com">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Phone Field -->
+                            <div class="space-y-2">
+                                <label for="form-phone" class="text-[11px] font-bold tracking-widest text-gray-400 uppercase">Voice Coordinates</label>
+                                <input type="tel" id="form-phone" class="w-full h-12 px-4 rounded-xl glassmorphism-input text-sm text-white focus:outline-none" placeholder="e.g., +91 99999 99999">
+                            </div>
+                            <!-- Course Select Field -->
+                            <div class="space-y-2">
+                                <label for="form-course" class="text-[11px] font-bold tracking-widest text-gray-400 uppercase">Target Curriculum Matrix</label>
+                                <div class="relative">
+                                    <select id="form-course" class="w-full h-12 px-4 rounded-xl glassmorphism-input text-sm text-gray-300 focus:outline-none appearance-none cursor-pointer">
+                                        <option value="" disabled selected class="bg-brand-black text-gray-500">Select Architecture Vector</option>
+                                        <option value="fs-dev" class="bg-brand-black text-white">Full-Stack Core Deployment</option>
+                                        <option value="data-sci" class="bg-brand-black text-white">Advanced Data Matrix Systems</option>
+                                        <option value="cyber-sec" class="bg-brand-black text-white">Network Intrusion Protocols</option>
+                                        <option value="cloud-arch" class="bg-brand-black text-white">Distributed Cloud Operations</option>
+                                    </select>
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500 text-xs">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="space-y-2">
+                            <label for="form-msg" class="text-[11px] font-bold tracking-widest text-gray-400 uppercase">Payload Data / Message Context *</label>
+                            <textarea id="form-msg" required rows="5" class="w-full p-4 rounded-xl glassmorphism-input text-sm text-white focus:outline-none resize-none" placeholder="Describe the deployment parameters, alignment opportunities, or operational questions..."></textarea>
+                        </div>
+
+                        <!-- Submit Triggers -->
+                        <div class="pt-4">
+                            <button type="submit" class="w-full h-12 rounded-xl bg-brand-neon hover:bg-brand-neonHover text-brand-black text-sm font-bold tracking-wider uppercase transition-all shadow-lg shadow-brand-neon/20 flex items-center justify-center gap-2 group">
+                                Dispatch Transmission Packet <i class="fa-solid fa-paper-plane text-xs transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FAQ SECTION (ACCORDION MATRIX) -->
+    <section class="py-24 bg-brand-dark/40 border-y border-white/5 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="text-xs font-bold tracking-widest text-brand-neon uppercase mb-2">Automated Resolutions</div>
+                <h2 class="text-3xl font-extrabold text-white uppercase">Frequently Queried Parameters</h2>
+                <div class="h-1 w-16 bg-brand-neon mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item glassmorphism rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button class="faq-trigger w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="text-sm font-semibold tracking-wide text-white">What is the processing window for terminal messages?</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-xs text-gray-400 font-light leading-relaxed">
+                            All standard structural transmissions undergo validation matrices within 12 to 24 processing hours. Active admission vectors receive dynamic queuing priority.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item glassmorphism rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button class="faq-trigger w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="text-sm font-semibold tracking-wide text-white">Are physical campus visitations pre-authorized?</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-xs text-gray-400 font-light leading-relaxed">
+                            Physical validation requires a confirmed slot clearance. Use the voice terminal or WhatsApp gateway matrix to coordinate access credentials prior to arrival.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item glassmorphism rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button class="faq-trigger w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="text-sm font-semibold tracking-wide text-white">Can I update structural configurations post-submission?</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-gray-500 faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-5">
+                        <p class="text-xs text-gray-400 font-light leading-relaxed">
+                            Yes. Dispatch an updated data packet via support@sandytech.edu referencing your exact Entity Name and timestamp markers to alter system files.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-black border-t border-white/5 pt-16 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="gallery.html" class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-brand-neon flex items-center justify-center font-bold text-brand-black text-sm"><i class="fa-solid fa-code"></i></div>
+                    <span class="text-lg font-bold tracking-tight text-white">SANDY TECH</span>
+                </a>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    Exhibiting true high-performance technical computing environments and continuous pipeline execution setups.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="about.html" class="hover:text-brand-neon transition-colors">About Corporate</a></li>
+                    <li><a href="courses.html" class="hover:text-brand-neon transition-colors">Courses Matrix</a></li>
+                    <li><a href="notes.html" class="hover:text-brand-neon transition-colors">Notes Matrix</a></li>
+                    <li><a href="gallery.html" class="hover:text-brand-neon transition-colors">Visual Archive</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Ecosystem Zones</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="gallery.html" class="hover:text-brand-neon transition-colors">Compilation Systems</a></li>
+                    <li><a href="gallery.html" class="hover:text-brand-neon transition-colors">Interactive Lecture Halls</a></li>
+                    <li><a href="gallery.html" class="hover:text-brand-neon transition-colors">Hackathon Archives</a></li>
+                    <li><a href="gallery.html" class="hover:text-brand-neon transition-colors">Video Walkthroughs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contact Gateway</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-neon"></i> admissions@sandytech.edu</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-neon"></i> +91 98765 43210</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500">&copy; 2026 Sandy Tech Academy. Media asset integrity secured.</p>
+            <div class="flex items-center gap-4 text-gray-400 text-sm">
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-brand-neon transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTION SCRIPTS -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                line1.style.transform = 'translateY(8px) rotate(45deg)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'translateY(-8px) rotate(-45deg)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', () => isMenuOpen && toggleMenu()));
+
+        // Accordion (FAQ) Interactivity Grid
+        const faqTriggers = document.querySelectorAll('.faq-trigger');
+        faqTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const parent = trigger.parentElement;
+                const isActive = parent.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+                
+                if (!isActive) {
+                    parent.classList.add('active');
+                }
+            });
+        });
+
+        // Form Submission Intercept Simulation
+        document.getElementById('secure-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Transmission status: Clear. System packet accepted into pipeline.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
