@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Sandy Tech Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+        body { font-family: 'Outfit', sans-serif; background: #0f172a; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glow-icon { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6)); }
+        .timeline-line { position: relative; }
+        .timeline-line::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #1e293b; }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <header class="py-24 text-center">
+        <h1 class="text-6xl font-extrabold mb-6">Our <span class="text-blue-500">Story</span></h1>
+        <p class="text-slate-400 max-w-2xl mx-auto">Building the future of technical education, one line of code at a time.</p>
+    </header>
+
+    <!-- Mission & Vision -->
+    <section class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8">
+        <div class="glass p-10 rounded-3xl">
+            <h3 class="text-2xl font-bold mb-4 text-blue-500">Mission</h3>
+            <p class="text-slate-300">To democratize high-end technical skills through immersive, project-based learning.</p>
+        </div>
+        <div class="glass p-10 rounded-3xl">
+            <h3 class="text-2xl font-bold mb-4 text-blue-500">Vision</h3>
+            <p class="text-slate-300">To become the global standard for professional digital transformation training.</p>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-20">
+        <h3 class="text-4xl font-bold text-center mb-16">Our Journey</h3>
+        <div class="max-w-4xl mx-auto px-4 space-y-12 timeline-line">
+            <div class="glass p-6 rounded-xl relative z-10">
+                <span class="text-blue-500 font-bold">2026</span>
+                <h4 class="text-xl font-bold">Launch of Sandy Tech Academy</h4>
+            </div>
+            <div class="glass p-6 rounded-xl relative z-10">
+                <span class="text-blue-500 font-bold">2026</span>
+                <h4 class="text-xl font-bold">First 10,000 Graduates</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h3 class="text-4xl font-bold mb-16">Core Values</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glow-icon text-5xl">💡</div>
+                <div class="glow-icon text-5xl">🚀</div>
+                <div class="glow-icon text-5xl">🤝</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-slate-500 border-t border-slate-800">
+        <p>&copy; 2026 Sandy Tech Academy. Crafted for brilliance.</p>
+    </footer>
+
+</body>
+</html>
