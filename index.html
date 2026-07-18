@@ -4,9 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandy Tech Academy | Home</title>
-    <link rel="stylesheet" href="style.css">
     <!-- AOS Animation Library CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- ALL PREMIUM CSS EMBEDDED HERE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Premium Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d2ff;
+        }
+
+        .logo span {
+            color: #00f5d4;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #00f5d4;
+            text-shadow: 0 0 10px #00f5d4;
+        }
+
+        /* Hero Section with Glow */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #00d2ff, #00f5d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .btn-premium {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00d2ff, #00f5d4);
+            color: #0b0f19;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 245, 212, 0.7);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,210,255,0.2) 0%, rgba(0,0,0,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* Features Styling */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 80px 8%;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            transition: 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #00d2ff;
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #00f5d4;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,11 +161,11 @@
         <div class="logo">Sandy Tech <span>Academy</span></div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About & Courses</a></li>
+            <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section with Premium Effects -->
+    <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
             <h1>Welcome to <span class="gradient-text">Sandy Tech Academy</span></h1>
@@ -45,8 +191,14 @@
         </div>
     </section>
 
-    <!-- AOS JS Library -->
+    <!-- AOS JS Library & Custom JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // --- JAVASCRIPT EMBEDDED HERE ---
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
 </body>
 </html>
