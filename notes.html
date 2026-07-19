@@ -4,572 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSBTE Diploma Notes Portal | Sandy Tech Academy</title>
-    <meta name="description" content="Access semester-wise MSBTE Diploma notes, practical files, question papers, and important questions across all engineering branches.">
-    
-    <!-- Typography Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS RESET & CUSTOM PROPERTIES */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg-color: #050816;
-            --primary-color: #3B82F6;
-            --secondary-color: #2563EB;
-            --accent-color: #2DD4BF;
-            --card-bg: #111827;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-main: #FFFFFF;
-            --text-secondary: #94A3B8;
-            --glass-bg: rgba(17, 24, 39, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --font-headings: 'Poppins', sans-serif;
-            --font-paragraphs: 'Inter', sans-serif;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-color: #050816; --primary-color: #3B82F6; --secondary-color: #2563EB;
+            --accent-color: #2DD4BF; --card-bg: #111827; --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #FFFFFF; --text-secondary: #94A3B8; --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08); --font-headings: 'Poppins', sans-serif;
+            --font-paragraphs: 'Inter', sans-serif; --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --max-width: 1280px;
         }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-paragraphs);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* UTILITIES & REUSABLE CLASSES */
-        .container {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-padding {
-            padding: 5rem 0;
-        }
-
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            transition: var(--transition);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2), 0 0 20px -5px rgba(45, 212, 191, 0.1);
-            transform: translateY(-4px);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            font-family: var(--font-paragraphs);
-            font-weight: 500;
-            font-size: 0.9rem;
-            border-radius: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: #ffffff;
-            border: none;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-color);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* PREMIUM STICKY NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(5, 8, 22, 0.7);
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 4.5rem;
-        }
-
-        .nav-logo img {
-            height: 36px;
-            display: block;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.925rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-main);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .nav-icon-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-icon-btn:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: var(--text-main);
-            transition: var(--transition);
-        }
-
-        /* PORTAL HERO SECTION */
-        .hero {
-            position: relative;
-            padding-top: 10rem;
-            padding-bottom: 4rem;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(45, 212, 191, 0.04) 60%, transparent 100%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .hero h1 {
-            font-family: var(--font-headings);
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        /* STICKY SEARCH BAR ELEMENT */
-        .search-sticky-container {
-            position: sticky;
-            top: 4.5rem;
-            z-index: 900;
-            padding: 1.5rem 0;
-            background: linear-gradient(to bottom, #050816 70%, transparent);
-            backdrop-filter: blur(4px);
-        }
-
-        .search-box {
-            max-width: 640px;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            border-radius: 50px;
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid var(--border-color);
-            padding: 0.25rem 0.5rem 0.25rem 1.5rem;
-            transition: var(--transition);
-        }
-
-        .search-box:focus-within {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
-        }
-
-        .search-box svg {
-            color: var(--text-secondary);
-            margin-right: 0.75rem;
-            flex-shrink: 0;
-        }
-
-        .search-box input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--text-main);
-            font-family: var(--font-paragraphs);
-            font-size: 1rem;
-            padding: 0.75rem 0;
-        }
-
-        .search-box input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        /* BRANCH SELECTION SYSTEM */
-        .branch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 4rem;
-        }
-
-        .branch-btn {
-            padding: 1.5rem;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .branch-btn h3 {
-            font-family: var(--font-headings);
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .branch-btn.active {
-            border-color: var(--accent-color);
-            background: rgba(45, 212, 191, 0.05);
-        }
-
-        .branch-btn.active h3 {
-            color: var(--accent-color);
-        }
-
-        .branch-icon {
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-
-        .branch-btn:hover .branch-icon,
-        .branch-btn.active .branch-icon {
-            color: var(--accent-color);
-            transform: translateX(3px);
-        }
-
-        /* SEMESTER MATRIX PACKS */
-        .semesters-container {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .semesters-container.active {
-            display: block;
-        }
-
-        .semester-block {
-            margin-bottom: 4rem;
-        }
-
-        .semester-title {
-            font-family: var(--font-headings);
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1rem;
-        }
-
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .subject-card {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .subject-header h4 {
-            font-family: var(--font-headings);
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .subject-code {
-            font-family: var(--font-paragraphs);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .resource-links-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        .resource-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .resource-item:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .resource-item svg {
-            color: var(--primary-color);
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
-
-        .resource-item:hover svg {
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* PROFESSIONAL FOOTER */
-        .footer {
-            background: #030611;
-            border-top: 1px solid var(--border-color);
-            padding: 5rem 0 2.5rem 0;
-            margin-top: 6rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.2fr repeat(4, 0.7fr);
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            font-size: 0.925rem;
-            margin-top: 1.25rem;
-            max-width: 260px;
-        }
-
-        .footer-col h4 {
-            font-family: var(--font-headings);
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--text-main);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.25rem;
-        }
-
-        .social-icon {
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-
-        .social-icon:hover {
-            color: var(--text-main);
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1024px) {
-            .footer-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-paragraphs); line-height: 1.6; overflow-x: hidden; }
+        .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 8, 22, 0.7); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: var(--transition); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+        .nav-logo img { height: 36px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.925rem; font-weight: 500; transition: var(--transition); }
+        .nav-link:hover, .nav-link.active { color: var(--text-main); }
+        .nav-link.active { color: var(--text-main); font-weight: 600; }
+        .nav-actions { display: flex; align-items: center; gap: 1.25rem; }
+        .nav-icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .nav-icon-btn:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: transparent; border: none; cursor: pointer; padding: 0.5rem; }
+        .hamburger span { display: block; width: 24px; height: 2px; background-color: var(--text-main); transition: var(--transition); }
+        .hero { position: relative; padding-top: 10rem; padding-bottom: 4rem; overflow: hidden; text-align: center; }
+        .hero h1 { font-family: var(--font-headings); font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .search-sticky-container { position: sticky; top: 4.5rem; z-index: 900; padding: 1.5rem 0; background: linear-gradient(to bottom, #050816 70%, transparent); backdrop-filter: blur(4px); }
+        .search-box { max-width: 640px; margin: 0 auto; position: relative; display: flex; align-items: center; border-radius: 50px; background: rgba(17, 24, 39, 0.8); border: 1px solid var(--border-color); padding: 0.25rem 0.5rem 0.25rem 1.5rem; transition: var(--transition); }
+        .search-box input { width: 100%; background: transparent; border: none; outline: none; color: var(--text-main); font-family: var(--font-paragraphs); font-size: 1rem; padding: 0.75rem 0; }
+        .branch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 4rem; }
+        .glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); border-radius: 16px; transition: var(--transition); }
+        .branch-btn { padding: 1.5rem; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .branch-btn.active h3 { color: var(--accent-color); }
+        .semesters-container { display: none; }
+        .semesters-container.active { display: block; }
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 4.5rem;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 4.5rem);
-                background: var(--bg-color);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: var(--transition);
-                border-top: 1px solid var(--border-color);
-            }
-            .nav-menu.active { left: 0; }
-            .hamburger { display: flex; }
-            .hero h1 { font-size: 2.75rem; }
-            .subjects-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 480px) {
-            .footer-grid { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .resource-links-grid { grid-template-columns: 1fr; }
+            .nav-menu { position: fixed; top: 4.5rem; left: -100%; width: 100%; height: calc(100vh - 4.5rem); background: var(--bg-color); flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1.5rem; transition: var(--transition); border-top: 1px solid var(--border-color); }
+            .nav-menu.active { left: 0; } .hamburger { display: flex; }
         }
     </style>
 </head>
 <body>
-
-    <!-- STICKY PREMIUM NAVBAR -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="container nav-container">
             <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="Sandy Tech Academy Logo">
+                <img src="logo.png" alt="Sandy Tech Academy Logo" onerror="this.src='images/logo.png'">
             </a>
-            
-            <li><a href="index.html" class="nav-link">Home</a></li>
-<li><a href="notes.html" class="nav-link">Diploma Notes</a></li>
-<li><a href="Course.html" class="nav-link">Degree Notes</a></li>
-<li><a href="programming.html" class="nav-link">Programming</a></li>
-<li><a href="gallery.html" class="nav-link">Projects</a></li>
-<li><a href="Course.html" class="nav-link">Downloads</a></li>
-<li><a href="about.html" class="nav-link">Blog</a></li>
-<li><a href="contact.html" class="nav-link">Contact</a></li>
-
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link active">Diploma Notes</a></li>
+                <li><a href="Course.html" class="nav-link">Degree Notes</a></li>
+                <li><a href="programming.html" class="nav-link">Programming</a></li>
+                <li><a href="gallery.html" class="nav-link">Projects</a></li>
+                <li><a href="Course.html" class="nav-link">Downloads</a></li>
+                <li><a href="about.html" class="nav-link">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
             <div class="nav-actions">
                 <button class="nav-icon-btn" aria-label="Toggle Dark Mode">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </button>
                 <button class="hamburger" id="menuToggle" aria-label="Open Mobile Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
     </nav>
-
-    <!-- HERO SECTION -->
     <header class="hero">
         <div class="hero-glow"></div>
         <div class="container">
@@ -577,313 +81,32 @@
             <p>Access structured, semester-mapped conceptual notes, verified experiment files, and previous board evaluation bundles.</p>
         </div>
     </header>
-
-    <!-- STICKY SEARCH BAR SECTION -->
     <div class="search-sticky-container">
         <div class="container">
             <div class="search-box">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" id="subjectSearch" placeholder="Search topics, codes, or specific subject names...">
             </div>
         </div>
     </div>
-
-    <!-- MAIN PORTAL MAP -->
-    <main class="container section-padding" style="padding-top: 2rem;">
-        <!-- BRANCH SELECTION ROW -->
+    <main class="container" style="padding-top: 2rem; padding-bottom: 5rem;">
         <div class="branch-grid">
-            <div class="glass-card branch-btn active" data-branch="computer">
-                <h3>Computer Engineering</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="it">
-                <h3>Information Technology</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="mechanical">
-                <h3>Mechanical</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="civil">
-                <h3>Civil</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="electrical">
-                <h3>Electrical</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="entc">
-                <h3>ENTC</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
-            <div class="glass-card branch-btn" data-branch="aiml">
-                <h3>AI & ML</h3>
-                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
+            <div class="glass-card branch-btn active" data-branch="computer"><h3>Computer Engineering</h3></div>
+            <div class="glass-card branch-btn" data-branch="it"><h3>Information Technology</h3></div>
         </div>
-
-        <!-- CONTENT SEMESTER WRAPPERS (Dynamic State Simulation) -->
         <div id="portalContent">
-            <!-- Computer Engineering Matrix Display (Default) -->
             <div id="branch-computer" class="semesters-container active">
-                
-                <!-- Semester 1 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 1</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Basic Mathematics</h4>
-                                <span class="subject-code">BMA-311001</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><list points=""></list><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Semester 2 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 2</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Applied Mathematics</h4>
-                                <span class="subject-code">AMA-312001</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Semester 3 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 3</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Data Structures using C</h4>
-                                <span class="subject-code">DSU-22317</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Semester 4 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 4</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Java Programming</h4>
-                                <span class="subject-code">JPR-22412</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Semester 5 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 5</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Advanced Java Programming</h4>
-                                <span class="subject-code">AJP-22517</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Semester 6 Block -->
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester 6</h3>
-                    <div class="subjects-grid">
-                        <div class="glass-card subject-card">
-                            <div class="subject-header">
-                                <h4>Management</h4>
-                                <span class="subject-code">MAN-22601</span>
-                            </div>
-                            <div class="resource-links-grid">
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
-                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Generic placeholder container for alternate selections -->
-            <div id="branch-generic" class="semesters-container">
-                <div class="semester-block">
-                    <h3 class="semester-title">Semester Module</h3>
-                    <div class="subjects-grid" id="genericSubjectsGrid">
-                        <!-- Filled organically via interaction layer -->
-                    </div>
+                <div style="padding: 2rem; background: var(--glass-bg); border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h4>Basic Mathematics</h4>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">BMA-311001</span>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- PROFESSIONAL FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Sandy Tech Academy Logo" style="height: 32px;">
-                    <p>High-fidelity technical documentation and study paths for modern engineering aspirants.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="notes.html">Diploma Notes</a></li>
-                        <li><a href="#">Degree Notes</a></li>
-                        <li><a href="#">Question Papers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Programming</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Coding Roadmaps</a></li>
-                        <li><a href="#">Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="copyright">&copy; 2026 Sandy Tech Academy. All rights reserved.</div>
-                <div class="social-links">
-                    <a href="#" class="social-icon" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- LOGIC COUPLING LAYER -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
-            const branchButtons = document.querySelectorAll('.branch-btn');
-            const computerBranch = document.getElementById('branch-computer');
-            const genericBranch = document.getElementById('branch-generic');
-            const genericGrid = document.getElementById('genericSubjectsGrid');
-            const searchInput = document.getElementById('subjectSearch');
-
-            // Responsive Menu toggle
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            // Branch filtering state engine
-            branchButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    branchButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const selected = btn.getAttribute('data-branch');
-
-                    if(selected === 'computer') {
-                        genericBranch.classList.remove('active');
-                        computerBranch.classList.add('active');
-                    } else {
-                        computerBranch.classList.remove('active');
-                        
-                        // Populate placeholder content for other selections
-                        const properName = btn.querySelector('h3').innerText;
-                        genericGrid.innerHTML = `
-                            <div class="glass-card subject-card" style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem;">
-                                <h4>${properName} Modules Loaded</h4>
-                                <span class="subject-code" style="margin-bottom: 0.5rem;">Standard Curriculum Active</span>
-                                <p style="color: var(--text-secondary); max-width: 400px; margin: 0 auto 1.5rem auto; font-size: 0.9rem;">
-                                    Semester 1 through 6 engineering notes and structural sheets are accessible below.
-                                </p>
-                                <div class="resource-links-grid" style="max-width: 320px; margin: 0 auto;">
-                                    <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> View Shared Pack</a>
-                                    <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> View Papers</a>
-                                </div>
-                            </div>
-                        `;
-                        genericBranch.classList.add('active');
-                    }
-                });
-            });
-
-            // Clean inline local structural search evaluation
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                const cards = document.querySelectorAll('.subject-card');
-
-                cards.forEach(card => {
-                    const title = card.querySelector('h4')?.innerText.toLowerCase() || '';
-                    const code = card.querySelector('.subject-code')?.innerText.toLowerCase() || '';
-                    
-                    if(title.includes(query) || code.includes(query)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
+            menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
         });
     </script>
 </body>
