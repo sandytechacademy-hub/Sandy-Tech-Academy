@@ -3,74 +3,1263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandy Tech Academy | Home</title>
+    <title>Sandy Tech Academy | Premium Educational & Technical Platform</title>
+    <meta name="description" content="Access free MSBTE Diploma notes, Engineering degree notes, programming tutorials, projects, and career resources at Sandy Tech Academy.">
+    
+    <!-- Typography Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #0b0f19; color: #ffffff; }
+        /* CSS RESET & CUSTOM PROPERTIES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* PW Style Top Navbar */
-        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 8%; background: #0e1424; border-bottom: 1px solid rgba(0, 210, 255, 0.2); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .logo { font-size: 22px; font-weight: bold; color: #00d2ff; text-decoration: none; }
-        .logo span { color: #00f5d4; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin: 0 15px; }
-        .nav-links a { color: #a5b4fc; text-decoration: none; font-size: 15px; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: #00f5d4; }
-        .login-btn { background: #00d2ff; color: #0b0f19; padding: 8px 22px; border-radius: 6px; font-weight: bold; text-decoration: none; transition: 0.3s; }
-        .login-btn:hover { background: #00f5d4; box-shadow: 0 0 15px rgba(0, 245, 212, 0.5); }
+        :root {
+            --bg-color: #050816;
+            --primary-color: #3B82F6;
+            --secondary-color: #2563EB;
+            --accent-color: #2DD4BF;
+            --card-bg: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-headings: 'Poppins', sans-serif;
+            --font-paragraphs: 'Inter', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1280px;
+        }
 
-        /* PW Style Banner Carousel Area */
-        .hero-banner { margin: 100px 8% 40px 8%; background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc); border-radius: 12px; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(67, 100, 247, 0.3); }
-        .banner-text h1 { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1.2; }
-        .banner-text p { font-size: 1.2rem; color: #e0e7ff; margin: 10px 0 20px 0; }
-        .join-btn { background: #ffeb3b; color: #000; padding: 14px 35px; border-radius: 8px; font-size: 18px; font-weight: bold; text-decoration: none; transition: 0.3s; display: inline-block; }
-        .join-btn:hover { transform: scale(1.05); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-paragraphs);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* Trusted Platform Section */
-        .trusted-section { display: flex; align-items: center; justify-content: space-between; padding: 40px 8%; gap: 50px; }
-        .trusted-left { flex: 1; }
-        .trusted-left h2 { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
-        .trusted-left h2 span { color: #00f5d4; }
-        .trusted-left p { color: #94a3b8; font-size: 16px; margin-bottom: 25px; line-height: 1.6; }
-        .get-started-btn { background: #6366f1; color: white; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
-        .get-started-btn:hover { background: #4f46e5; }
-        
-        .trusted-right { flex: 1; display: flex; justify-content: center; }
-        .avatar-glow { width: 280px; height: 280px; background: rgba(0, 210, 255, 0.1); border: 2px dashed #00d2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00f5d4; font-weight: bold; }
+        /* UTILITIES & REUSABLE CLASSES */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 8rem 0;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            font-family: var(--font-paragraphs);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .accent-text {
+            color: var(--accent-color);
+        }
+
+        /* PREMIUM STICKY NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 8, 22, 0.7);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.925rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-icon-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding-top: 11rem;
+            padding-bottom: 8rem;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(45, 212, 191, 0.05) 50%, transparent 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-headings);
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-illustration-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code-window {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .code-header {
+            background: #1f2937;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .code-dot.red { background: #ef4444; }
+        .code-dot.yellow { background: #f59e0b; }
+        .code-dot.green { background: #10b981; }
+
+        .code-body {
+            background: #0b0f19;
+            padding: 1.5rem;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .float-icon {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-code);
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-icon:nth-child(1) { top: 10%; left: -20px; animation-delay: 0s; color: #e34c26; }
+        .float-icon:nth-child(2) { top: 60%; left: -40px; animation-delay: 1.5s; color: #264de4; }
+        .float-icon:nth-child(3) { top: -20px; right: 20px; animation-delay: 3s; color: #f7df1e; }
+        .float-icon:nth-child(4) { bottom: 20px; right: -10px; animation-delay: 4.5s; color: #4584b6; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* FEATURED CATEGORIES */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .category-icon {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .category-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .category-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-link {
+            color: var(--accent-color);
+        }
+
+        .category-link svg {
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-link svg {
+            transform: translateX(4px);
+        }
+
+        /* POPULAR PROGRAMMING LANGUAGES */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lang-card {
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lang-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-family: var(--font-code);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .lang-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .lang-count {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-card .btn {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* POPULAR DIPLOMA BRANCHES */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .branch-card {
+            padding: 2rem;
+        }
+
+        .branch-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .branch-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-val {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .branch-card .btn {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        /* LATEST RESOURCES */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .resource-horizontal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            gap: 2rem;
+        }
+
+        .resource-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .resource-tag {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .resource-tag.pdf { background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+        .resource-tag.blog { background: rgba(45, 212, 191, 0.15); color: var(--accent-color); border-color: rgba(45, 212, 191, 0.2); }
+        .resource-tag.tutorial { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.2); }
+
+        .resource-title {
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .resource-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        /* WHY CHOOSE US */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem 2rem;
+        }
+
+        .feature-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+        }
+
+        /* STATISTICS SECTION */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-headings);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* CALL TO ACTION */
+        .cta-box {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box h2 {
+            font-family: var(--font-headings);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-box p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* PROFESSIONAL FOOTER */
+        .footer {
+            background: #030611;
+            border-top: 1px solid var(--border-color);
+            padding: 5rem 0 2.5rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr repeat(4, 0.7fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            margin-top: 1.25rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-headings);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-icon {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+        }
+
+        /* RESPONSIVE RESPONSIVENESS */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 5rem 0; }
+            .nav-menu {
+                position: fixed;
+                top: 4.5rem;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 4.5rem);
+                background: var(--bg-color);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: var(--transition);
+                border-top: 1px solid var(--border-color);
+                overflow-y: auto;
+            }
+            .nav-menu.active { left: 0; }
+            .hamburger { display: flex; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-btns { justify-content: center; }
+            .resource-horizontal { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .resource-date { margin-left: auto; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-box h2 { font-size: 2.25rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 2.75rem; }
+            .hero-btns, .cta-btns { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .resource-horizontal { padding: 1.25rem; }
+            .resource-left { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .resource-date { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="logo">Sandy Tech <span>Academy</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="course.html">Courses</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="notes.html">Notes</a></li>
-        </ul>
-        <a href="login.html" class="login-btn">Login/Register</a>
+    <!-- STICKY PREMIUM NAVBAR -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="Sandy Tech Academy Logo">
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active">Home</a></li>
+                <li><a href="#" class="nav-link">Diploma Notes</a></li>
+                <li><a href="#" class="nav-link">Degree Notes</a></li>
+                <li><a href="#" class="nav-link">Programming</a></li>
+                <li><a href="#" class="nav-link">Projects</a></li>
+                <li><a href="#" class="nav-link">Downloads</a></li>
+                <li><a href="#" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-icon-btn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="nav-icon-btn" aria-label="Toggle Dark Mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="hamburger" id="menuToggle" aria-label="Open Mobile Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
     </nav>
 
-    <div class="hero-banner">
-        <div class="banner-text">
-            <h1>Yakeen 2.0 2027<br>For Tech Aspirants</h1>
-            <p>Get Premium Tech Education At Most Affordable Prices</p>
-            <a href="course.html" class="join-btn">Join Now</a>
-        </div>
-        <div style="font-size: 80px;">💻</div>
-    </div>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-glow"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Learn Today.<br>Build Tomorrow.</h1>
+                <p class="hero-subtitle">Free Diploma Notes, Programming Tutorials, Projects, Career Resources, All in One Platform.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary">Explore Notes</a>
+                    <a href="#" class="btn btn-secondary">Start Coding</a>
+                </div>
+            </div>
+            <div class="hero-illustration-wrap">
+                <div class="code-window glass-card">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <pre class="code-body"><code><span class="accent-text">const</span> academy = {
+  name: <span style="color: #2DD4BF;">"Sandy Tech"</span>,
+  mission: <span style="color: #2DD4BF;">"Empower Engineering"</span>,
+  resources: [
+    <span style="color: #3B82F6;">"Diploma Notes"</span>,
+    <span style="color: #3B82F6;">"Coding Roadmaps"</span>,
+    <span style="color: #3B82F6;">"Projects"</span>
+  ],
+  readyToBuild: <span style="color: #2DD4BF;">true</span>
+};
 
-    <section class="trusted-section">
-        <div class="trusted-left">
-            <h2>Bharat's <span>Trusted & Affordable</span> Educational Platform</h2>
-            <p>Unlock your potential by signing up with Sandy Tech Academy. The most advanced yet pocket-friendly coding and technology learning ecosystem.</p>
-            <a href="course.html" class="get-started-btn">Get Started</a>
+console.log(academy.mission);</code></pre>
+                </div>
+                <div class="floating-icons">
+                    <div class="float-icon">5</div>
+                    <div class="float-icon">3</div>
+                    <div class="float-icon">JS</div>
+                    <div class="float-icon">Py</div>
+                </div>
+            </div>
         </div>
-        <div class="trusted-right">
-            <div class="avatar-glow">Premium Learning</div>
+    </header>
+
+    <!-- FEATURED CATEGORIES -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Explore Core Hubs</h2>
+                <p class="section-subtitle">Structured technical materials tailored to academic roadmaps and career mastery.</p>
+            </div>
+            <div class="categories-grid">
+                <!-- Card 1 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </div>
+                    <h3>Diploma Notes</h3>
+                    <p>Comprehensive MSBTE-aligned structured notes to keep you ahead in semesters.</p>
+                    <a href="#" class="category-link">View Notes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                    </div>
+                    <h3>Degree Notes</h3>
+                    <p>Advanced study guides, referencing university standard syllabi for engineering streams.</p>
+                    <a href="#" class="category-link">View Notes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Programming</h3>
+                    <p>Deep-dives into concepts, syntax rules, logic building, and functional algorithms.</p>
+                    <a href="#" class="category-link">Start Learning <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <h3>Previous Papers</h3>
+                    <p>Equip yourself with past board and university exams to evaluate your progress.</p>
+                    <a href="#" class="category-link">Download PDFs <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3>Projects</h3>
+                    <p>Ready-to-deploy mini and major technical projects complete with documentation assets.</p>
+                    <a href="#" class="category-link">Explore Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <!-- Card 6 -->
+                <div class="glass-card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </div>
+                    <h3>Downloads</h3>
+                    <p>Instant ecosystem tools, setup configurations, dynamic practical sheets, and software setups.</p>
+                    <a href="#" class="category-link">Access Vault <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- POPULAR PROGRAMMING LANGUAGES -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Programming Ecosystem</h2>
+                <p class="section-subtitle">Develop critical coding mechanics from foundational syntax architectures up to full stacks.</p>
+            </div>
+            <div class="languages-grid">
+                <!-- Langs -->
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #e34c26;">5</div>
+                    <h3>HTML</h3>
+                    <div class="lang-count">25 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #264de4;">3</div>
+                    <h3>CSS</h3>
+                    <div class="lang-count">30 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #f7df1e;">JS</div>
+                    <h3>JavaScript</h3>
+                    <div class="lang-count">48 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #f89820;">JV</div>
+                    <h3>Java</h3>
+                    <div class="lang-count">52 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #4584b6;">PY</div>
+                    <h3>Python</h3>
+                    <div class="lang-count">45 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #a8b9cc;">C</div>
+                    <h3>C</h3>
+                    <div class="lang-count">20 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #00599c;">C++</div>
+                    <h3>C++</h3>
+                    <div class="lang-count">35 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+                <div class="glass-card lang-card">
+                    <div class="lang-icon-wrap" style="color: #00758f;">SQL</div>
+                    <h3>SQL</h3>
+                    <div class="lang-count">28 Topics</div>
+                    <a href="#" class="btn btn-secondary">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULAR DIPLOMA BRANCHES -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Diploma Engineering Verticals</h2>
+                <p class="section-subtitle">Streamlined pathways mapped cleanly to standard engineering polytechnic boards.</p>
+            </div>
+            <div class="branches-grid">
+                <!-- Branch -->
+                <div class="glass-card branch-card">
+                    <h3>Computer Engineering</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">36</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>Information Technology</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">34</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>Mechanical Eng.</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">40</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>Civil Engineering</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">38</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>Electrical Eng.</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">37</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>ENTC Engineering</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">35</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="glass-card branch-card">
+                    <h3>AI & ML</h3>
+                    <div class="branch-meta">
+                        <div class="meta-item"><span class="meta-label">Semesters</span><span class="meta-val">6</span></div>
+                        <div class="meta-item"><span class="meta-label">Subjects</span><span class="meta-val">32</span></div>
+                    </div>
+                    <a href="#" class="btn btn-secondary">Explore Branch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LATEST RESOURCES -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Fresh Resource Feed</h2>
+                <p class="section-subtitle">Stay context-aware with immediate updates pushed down directly onto the network.</p>
+            </div>
+            <div class="resources-grid">
+                <!-- Item 1 -->
+                <div class="glass-card resource-horizontal">
+                    <div class="resource-left">
+                        <span class="resource-tag notes">Notes</span>
+                        <h3 class="resource-title">Data Structures & Algorithms Implementation Guides</h3>
+                    </div>
+                    <span class="resource-date">2 hours ago</span>
+                </div>
+                <!-- Item 2 -->
+                <div class="glass-card resource-horizontal">
+                    <div class="resource-left">
+                        <span class="resource-tag pdf">PDF</span>
+                        <h3 class="resource-title">MSBTE Winter 2025 Computer Engineering Question Papers</h3>
+                    </div>
+                    <span class="resource-date">Yesterday</span>
+                </div>
+                <!-- Item 3 -->
+                <div class="glass-card resource-horizontal">
+                    <div class="resource-left">
+                        <span class="resource-tag blog">Blog</span>
+                        <h3 class="resource-title">Navigating Modern Engineering Careers: Industry Standards 2026</h3>
+                    </div>
+                    <span class="resource-date">3 days ago</span>
+                </div>
+                <!-- Item 4 -->
+                <div class="glass-card resource-horizontal">
+                    <div class="resource-left">
+                        <span class="resource-tag tutorial">Tutorial</span>
+                        <h3 class="resource-title">Mastering Clean Code Practices inside production Java Projects</h3>
+                    </div>
+                    <span class="resource-date">1 week ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE SANDY TECH ACADEMY -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">The Strategic Advantage</h2>
+                <p class="section-subtitle">Engineered to clear real friction, providing direct value without hidden payroll logic walls.</p>
+            </div>
+            <div class="features-grid">
+                <div class="glass-card feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Free Resources</h3>
+                    <p>Unrestricted access parameters into premium blueprints and educational materials.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <h3>Experienced Content</h3>
+                    <p>Curated and vetted systematically by engineering experts who understand test rubrics.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Programming Practice</h3>
+                    <p>Practical structural scripts mapped neatly alongside logical development patterns.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    </div>
+                    <h3>Latest Updates</h3>
+                    <p>Constant deployment updates mirroring present revisions to board requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTICS SECTION -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Notes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Tutorials</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="glass-card cta-box">
+                <h2>Ready to Start Learning?</h2>
+                <p>Unlock structured technical workflows immediately. No paywalls, no clutter, clear execution.</p>
+                <div class="cta-btns">
+                    <a href="#" class="btn btn-primary">Explore Notes</a>
+                    <a href="#" class="btn btn-secondary">Programming</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Sandy Tech Academy Logo" style="height: 32px;">
+                    <p>High-fidelity technical documentation and study paths for modern engineering aspirants.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Diploma Notes</a></li>
+                        <li><a href="#">Degree Notes</a></li>
+                        <li><a href="#">Question Papers</a></li>
+                        <li><a href="#">Syllabus</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programming</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Coding Roadmaps</a></li>
+                        <li><a href="#">Mini Projects</a></li>
+                        <li><a href="#">Major Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2026 Sandy Tech Academy. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('open');
+            });
+
+            // Smooth Header Scroll Shift
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.padding = '0.2rem 0';
+                    navbar.style.background = 'rgba(5, 8, 22, 0.85)';
+                } else {
+                    navbar.style.padding = '0';
+                    navbar.style.background = 'rgba(5, 8, 22, 0.7)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
