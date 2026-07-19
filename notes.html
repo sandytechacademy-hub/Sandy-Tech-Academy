@@ -1,419 +1,891 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Notes & Study Material | Sandy Tech Academy</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Poppins -->
+    <title>MSBTE Diploma Notes Portal | Sandy Tech Academy</title>
+    <meta name="description" content="Access semester-wise MSBTE Diploma notes, practical files, question papers, and important questions across all engineering branches.">
+    
+    <!-- Typography Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        darkmatte: '#0B0F19',
-                        cyberblue: '#00E5FF',
-                        neonblue: '#0052FF',
-                        glassbg: 'rgba(15, 23, 42, 0.45)',
-                        glassborder: 'rgba(0, 229, 255, 0.15)',
-                    },
-                    boxShadow: {
-                        neon: '0 0 20px rgba(0, 229, 255, 0.25)',
-                        neonhover: '0 0 35px rgba(0, 229, 255, 0.5)',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        /* CSS RESET & CUSTOM PROPERTIES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #050816;
+            --primary-color: #3B82F6;
+            --secondary-color: #2563EB;
+            --accent-color: #2DD4BF;
+            --card-bg: #111827;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-headings: 'Poppins', sans-serif;
+            --font-paragraphs: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1280px;
+        }
+
         body {
-            background-color: #0B0F19;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-paragraphs);
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .glass-panel {
-            background: rgba(13, 20, 38, 0.6);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(0, 229, 255, 0.12);
+
+        /* UTILITIES & REUSABLE CLASSES */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        .glass-panel:hover {
-            border-color: rgba(0, 229, 255, 0.3);
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+
+        .section-padding {
+            padding: 5rem 0;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            transition: var(--transition);
         }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2), 0 0 20px -5px rgba(45, 212, 191, 0.1);
+            transform: translateY(-4px);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #00E5FF;
-            border-radius: 4px;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-paragraphs);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* PREMIUM STICKY NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 8, 22, 0.7);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.925rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-icon-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        /* PORTAL HERO SECTION */
+        .hero {
+            position: relative;
+            padding-top: 10rem;
+            padding-bottom: 4rem;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(45, 212, 191, 0.04) 60%, transparent 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: var(--font-headings);
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* STICKY SEARCH BAR ELEMENT */
+        .search-sticky-container {
+            position: sticky;
+            top: 4.5rem;
+            z-index: 900;
+            padding: 1.5rem 0;
+            background: linear-gradient(to bottom, #050816 70%, transparent);
+            backdrop-filter: blur(4px);
+        }
+
+        .search-box {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.5rem 0.25rem 1.5rem;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-box svg {
+            color: var(--text-secondary);
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-family: var(--font-paragraphs);
+            font-size: 1rem;
+            padding: 0.75rem 0;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* BRANCH SELECTION SYSTEM */
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 4rem;
+        }
+
+        .branch-btn {
+            padding: 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .branch-btn h3 {
+            font-family: var(--font-headings);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .branch-btn.active {
+            border-color: var(--accent-color);
+            background: rgba(45, 212, 191, 0.05);
+        }
+
+        .branch-btn.active h3 {
+            color: var(--accent-color);
+        }
+
+        .branch-icon {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .branch-btn:hover .branch-icon,
+        .branch-btn.active .branch-icon {
+            color: var(--accent-color);
+            transform: translateX(3px);
+        }
+
+        /* SEMESTER MATRIX PACKS */
+        .semesters-container {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .semesters-container.active {
+            display: block;
+        }
+
+        .semester-block {
+            margin-bottom: 4rem;
+        }
+
+        .semester-title {
+            font-family: var(--font-headings);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .subject-card {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .subject-header h4 {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .subject-code {
+            font-family: var(--font-paragraphs);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .resource-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .resource-item:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .resource-item svg {
+            color: var(--primary-color);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .resource-item:hover svg {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PROFESSIONAL FOOTER */
+        .footer {
+            background: #030611;
+            border-top: 1px solid var(--border-color);
+            padding: 5rem 0 2.5rem 0;
+            margin-top: 6rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr repeat(4, 0.7fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            margin-top: 1.25rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-headings);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-icon {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 4.5rem;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 4.5rem);
+                background: var(--bg-color);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: var(--transition);
+                border-top: 1px solid var(--border-color);
+            }
+            .nav-menu.active { left: 0; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.75rem; }
+            .subjects-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .resource-links-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="text-slate-200 font-sans relative antialiased">
+<body>
 
-    <!-- Background Ambient Lights -->
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div class="absolute top-[-5%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyberblue/10 blur-[140px]"></div>
-        <div class="absolute top-[45%] right-[-15%] w-[45vw] h-[45vw] rounded-full bg-neonblue/15 blur-[160px]"></div>
-        <div class="absolute bottom-[5%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-cyberblue/10 blur-[130px]"></div>
-    </div>
-
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 w-full border-b border-cyberblue/10 bg-darkmatte/70 backdrop-blur-md transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-neonblue to-cyberblue flex items-center justify-center shadow-neon group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-cubes text-darkmatte text-xl font-bold"></i>
-                </div>
-                <span class="text-xl font-bold tracking-wider text-white">SANDY TECH <span class="text-cyberblue">ACADEMY</span></span>
+    <!-- STICKY PREMIUM NAVBAR -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Sandy Tech Academy Logo">
             </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link active">Diploma Notes</a></li>
+                <li><a href="#" class="nav-link">Degree Notes</a></li>
+                <li><a href="#" class="nav-link">Programming</a></li>
+                <li><a href="#" class="nav-link">Projects</a></li>
+                <li><a href="#" class="nav-link">Downloads</a></li>
+                <li><a href="#" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Home</a>
-                <a href="about.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">About</a>
-                <a href="courses.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Courses</a>
-                <a href="programming.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Programming</a>
-                <a href="notes.html" class="text-cyberblue font-medium transition-colors">Notes</a>
-                <a href="gallery.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Gallery</a>
-                <a href="contact.html" class="text-slate-300 hover:text-cyberblue font-medium transition-colors">Contact</a>
-            </nav>
-
-            <!-- Action Buttons -->
-            <div class="hidden lg:flex items-center space-x-4">
-                <a href="login.html" class="px-5 py-2 rounded-lg text-sm font-medium border border-cyberblue/30 text-cyberblue hover:bg-cyberblue/10 transition-all">Student Login</a>
-                <a href="enroll.html" class="px-5 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-neonblue to-cyberblue text-white shadow-neon hover:shadow-neonhover hover:scale-[1.02] transition-all">Enroll Now</a>
+            <div class="nav-actions">
+                <button class="nav-icon-btn" aria-label="Toggle Dark Mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="hamburger" id="menuToggle" aria-label="Open Mobile Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-cyberblue focus:outline-none">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
         </div>
+    </nav>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel w-full absolute top-20 left-0 border-b border-cyberblue/20 py-6 px-4 space-y-4 flex flex-col items-center">
-            <a href="index.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Home</a>
-            <a href="about.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">About</a>
-            <a href="courses.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Courses</a>
-            <a href="programming.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Programming</a>
-            <a href="notes.html" class="text-cyberblue font-medium w-full text-center py-2">Notes</a>
-            <a href="gallery.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Gallery</a>
-            <a href="contact.html" class="text-slate-300 hover:text-cyberblue font-medium w-full text-center py-2">Contact</a>
-            <div class="w-full pt-4 flex flex-col space-y-3 items-center">
-                <a href="login.html" class="w-2/3 text-center px-5 py-2 rounded-lg text-sm font-medium border border-cyberblue/30 text-cyberblue hover:bg-cyberblue/10 transition-all">Student Login</a>
-                <a href="enroll.html" class="w-2/3 text-center px-5 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-neonblue to-cyberblue text-white shadow-neon">Enroll Now</a>
-            </div>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <h1>MSBTE Diploma Vault</h1>
+            <p>Access structured, semester-mapped conceptual notes, verified experiment files, and previous board evaluation bundles.</p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative z-10 pt-16 pb-12 text-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-4">
-                Engineering Notes & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberblue to-neonblue">Study Material</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                Access curated architectural reference archives and precise structural syllabi tailored for comprehensive academic mastery.
-            </p>
-            <div class="w-24 h-1 bg-cyberblue mx-auto mt-6 rounded-full"></div>
+    <!-- STICKY SEARCH BAR SECTION -->
+    <div class="search-sticky-container">
+        <div class="container">
+            <div class="search-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="subjectSearch" placeholder="Search topics, codes, or specific subject names...">
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Notes Main Dashboard Section -->
-    <section class="relative z-10 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Category Divider 1: MSBTE Board Curriculums -->
-            <div class="flex items-center space-x-4 mb-8">
-                <h2 class="text-xl font-bold tracking-widest text-cyberblue uppercase">MSBTE Diploma Syllabus Modules</h2>
-                <div class="h-[1px] bg-gradient-to-r from-cyberblue/30 to-transparent flex-grow"></div>
+    <!-- MAIN PORTAL MAP -->
+    <main class="container section-padding" style="padding-top: 2rem;">
+        <!-- BRANCH SELECTION ROW -->
+        <div class="branch-grid">
+            <div class="glass-card branch-btn active" data-branch="computer">
+                <h3>Computer Engineering</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <!-- MSBTE Semester 1 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 5 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 1</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Foundational mathematics, basic physics metrics, chemistry configurations, and basic engineering design standards.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- MSBTE Semester 2 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 6 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 2</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Applied mathematics parameters, mechanical workflow graphics, structural analysis, and development modules.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- MSBTE Semester 3 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 6 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 3</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Core branch routing architectures, digital logic arrays, object computing frameworks, and database structures.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- MSBTE Semester 4 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 5 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 4</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Linear algorithms, micro-controller registers, communication telemetry protocols, and platform management architectures.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- MSBTE Semester 5 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 6 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 5</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Advanced software engineering algorithms, security parameters, network defense models, and dynamic coding loops.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- MSBTE Semester 6 -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyberblue/10 text-cyberblue font-mono">MSBTE SCHEME</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-book-open mr-1 text-neonblue"></i> 4 Subjects</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">MSBTE Semester 6</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Capstone ecosystem project management, industry compliance directives, and advanced distributed frameworks.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
+            <div class="glass-card branch-btn" data-branch="it">
+                <h3>Information Technology</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-            <!-- Category Divider 2: Programming Tracks -->
-            <div class="flex items-center space-x-4 mb-8">
-                <h2 class="text-xl font-bold tracking-widest text-cyberblue uppercase">Programming & Development Compilations</h2>
-                <div class="h-[1px] bg-gradient-to-r from-cyberblue/30 to-transparent flex-grow"></div>
+            <div class="glass-card branch-btn" data-branch="mechanical">
+                <h3>Mechanical</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Python Notes -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-neonblue/20 text-white font-mono">CORE TRACK</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-invoice mr-1 text-cyberblue"></i> 18 Modules</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">Python Notes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Algorithmic scripts, generator protocols, decorators, custom exceptions, and data sorting matrix implementations.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- Java Notes -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-neonblue/20 text-white font-mono">CORE TRACK</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-invoice mr-1 text-cyberblue"></i> 22 Modules</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">Java Notes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">JVM architecture insights, multi-thread synchronizations, abstraction boundaries, garbage collections, and Spring basics.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- C Programming Notes -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-neonblue/20 text-white font-mono">FOUNDATION</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-invoice mr-1 text-cyberblue"></i> 12 Modules</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">C Programming Notes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Pointer allocation arithmetic, struct registers, custom headers, file stream bindings, and buffer control layouts.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- HTML CSS Notes -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-neonblue/20 text-white font-mono">WEB ENGINE</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-invoice mr-1 text-cyberblue"></i> 15 Modules</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">HTML CSS Notes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Semantic document nodes, custom layout selectors, responsive animation transitions, media parameters, and optimization guidelines.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
-
-                <!-- JavaScript Notes -->
-                <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-neonblue/20 text-white font-mono">WEB ENGINE</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-file-invoice mr-1 text-cyberblue"></i> 20 Modules</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyberblue transition-colors">JavaScript Notes</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-6">Event looping internals, promise chains, asynchronous tasks, closure properties, DOM interaction maps, and ES6 paradigms.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-                        <button class="py-2 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyberblue/40 text-xs font-semibold text-slate-300 hover:text-cyberblue transition-all"><i class="fa-regular fa-eye mr-1.5"></i>Preview</button>
-                        <button class="py-2 rounded-lg bg-gradient-to-r from-neonblue to-cyberblue text-xs font-bold text-white shadow-neon hover:shadow-neonhover transition-all"><i class="fa-solid fa-cloud-arrow-down mr-1.5"></i>Download</button>
-                    </div>
-                </div>
+            <div class="glass-card branch-btn" data-branch="civil">
+                <h3>Civil</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-        </div>
-    </section>
-
-    <!-- Footer Area -->
-    <footer class="relative z-10 bg-darkmatte border-t border-cyberblue/10 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            
-            <!-- Column 1: Brand -->
-            <div class="space-y-4">
-                <a href="index.html" class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded bg-gradient-to-tr from-neonblue to-cyberblue flex items-center justify-center shadow-neon">
-                        <i class="fa-solid fa-cubes text-darkmatte text-sm font-bold"></i>
-                    </div>
-                    <span class="text-lg font-bold tracking-wider text-white">SANDY TECH <span class="text-cyberblue">ACADEMY</span></span>
-                </a>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Premium Technological Institute accelerating standard academic engineering streams into professional developer ecosystems seamlessly.
-                </p>
+            <div class="glass-card branch-btn" data-branch="electrical">
+                <h3>Electrical</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-            <!-- Column 2: Quick Links -->
-            <div>
-                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Quick Navigation</h4>
-                <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="about.html" class="hover:text-cyberblue transition-colors">About Academy History</a></li>
-                    <li><a href="courses.html" class="hover:text-cyberblue transition-colors">Engineering Curriculum</a></li>
-                    <li><a href="programming.html" class="hover:text-cyberblue transition-colors">Programming Classes</a></li>
-                    <li><a href="notes.html" class="hover:text-cyberblue transition-colors">Download Board Notes</a></li>
-                    <li><a href="contact.html" class="hover:text-cyberblue transition-colors">Contact Office Support</a></li>
-                </ul>
+            <div class="glass-card branch-btn" data-branch="entc">
+                <h3>ENTC</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-
-            <!-- Column 3: Tech Matrix -->
-            <div>
-                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Technologies</h4>
-                <div class="flex flex-wrap gap-2 text-[10px] font-mono text-slate-300">
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">Python</span>
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">Java</span>
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">C++ Core</span>
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">JavaScript</span>
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">HTML5/CSS3</span>
-                    <span class="px-2 py-1 bg-slate-900 border border-slate-800 rounded">AI Workflows</span>
-                </div>
-            </div>
-
-            <!-- Column 4: Social Connect -->
-            <div>
-                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4 border-l-2 border-cyberblue pl-2">Connect With Us</h4>
-                <div class="flex space-x-4 mb-4">
-                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-github text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-youtube text-sm"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyberblue hover:border-cyberblue transition-all"><i class="fa-brands fa-instagram text-sm"></i></a>
-                </div>
-                <p class="text-[11px] text-slate-500"><i class="fa-solid fa-envelope mr-1 text-cyberblue"></i> support@sandytechacademy.com</p>
+            <div class="glass-card branch-btn" data-branch="aiml">
+                <h3>AI & ML</h3>
+                <svg class="branch-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
         </div>
 
-        <!-- Copyright Line -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-900/60 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Sandy Tech Academy. All engineering rights reserved architectural systems.</p>
-            <div class="flex space-x-6 text-slate-600">
-                <a href="#" class="hover:text-cyberblue transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-cyberblue transition-colors">Terms of Operations</a>
+        <!-- CONTENT SEMESTER WRAPPERS (Dynamic State Simulation) -->
+        <div id="portalContent">
+            <!-- Computer Engineering Matrix Display (Default) -->
+            <div id="branch-computer" class="semesters-container active">
+                
+                <!-- Semester 1 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 1</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Basic Mathematics</h4>
+                                <span class="subject-code">BMA-311001</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><list points=""></list><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester 2 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 2</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Applied Mathematics</h4>
+                                <span class="subject-code">AMA-312001</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester 3 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 3</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Data Structures using C</h4>
+                                <span class="subject-code">DSU-22317</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester 4 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 4</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Java Programming</h4>
+                                <span class="subject-code">JPR-22412</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester 5 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 5</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Advanced Java Programming</h4>
+                                <span class="subject-code">AJP-22517</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semester 6 Block -->
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester 6</h3>
+                    <div class="subjects-grid">
+                        <div class="glass-card subject-card">
+                            <div class="subject-header">
+                                <h4>Management</h4>
+                                <span class="subject-code">MAN-22601</span>
+                            </div>
+                            <div class="resource-links-grid">
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Open Notes</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Important Qs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><line x1="5" y1="6" x2="5.01" y2="6"></line><line x1="5" y1="12" x2="5.01" y2="12"></line><line x1="5" y1="18" x2="5.01" y2="18"></svg> MCQs</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Practicals</a>
+                                <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Past Papers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Generic placeholder container for alternate selections -->
+            <div id="branch-generic" class="semesters-container">
+                <div class="semester-block">
+                    <h3 class="semester-title">Semester Module</h3>
+                    <div class="subjects-grid" id="genericSubjectsGrid">
+                        <!-- Filled organically via interaction layer -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PROFESSIONAL FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Sandy Tech Academy Logo" style="height: 32px;">
+                    <p>High-fidelity technical documentation and study paths for modern engineering aspirants.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="notes.html">Diploma Notes</a></li>
+                        <li><a href="#">Degree Notes</a></li>
+                        <li><a href="#">Question Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Programming</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Coding Roadmaps</a></li>
+                        <li><a href="#">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2026 Sandy Tech Academy. All rights reserved.</div>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Navigation Toggle Logic -->
+    <!-- LOGIC COUPLING LAYER -->
     <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const branchButtons = document.querySelectorAll('.branch-btn');
+            const computerBranch = document.getElementById('branch-computer');
+            const genericBranch = document.getElementById('branch-generic');
+            const genericGrid = document.getElementById('genericSubjectsGrid');
+            const searchInput = document.getElementById('subjectSearch');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-        
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('shadow-lg', 'bg-darkmatte/90');
-            } else {
-                header.classList.remove('shadow-lg', 'bg-darkmatte/90');
-            }
+            // Responsive Menu toggle
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Branch filtering state engine
+            branchButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    branchButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const selected = btn.getAttribute('data-branch');
+
+                    if(selected === 'computer') {
+                        genericBranch.classList.remove('active');
+                        computerBranch.classList.add('active');
+                    } else {
+                        computerBranch.classList.remove('active');
+                        
+                        // Populate placeholder content for other selections
+                        const properName = btn.querySelector('h3').innerText;
+                        genericGrid.innerHTML = `
+                            <div class="glass-card subject-card" style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem;">
+                                <h4>${properName} Modules Loaded</h4>
+                                <span class="subject-code" style="margin-bottom: 0.5rem;">Standard Curriculum Active</span>
+                                <p style="color: var(--text-secondary); max-width: 400px; margin: 0 auto 1.5rem auto; font-size: 0.9rem;">
+                                    Semester 1 through 6 engineering notes and structural sheets are accessible below.
+                                </p>
+                                <div class="resource-links-grid" style="max-width: 320px; margin: 0 auto;">
+                                    <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> View Shared Pack</a>
+                                    <a href="#" class="resource-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> View Papers</a>
+                                </div>
+                            </div>
+                        `;
+                        genericBranch.classList.add('active');
+                    }
+                });
+            });
+
+            // Clean inline local structural search evaluation
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const cards = document.querySelectorAll('.subject-card');
+
+                cards.forEach(card => {
+                    const title = card.querySelector('h4')?.innerText.toLowerCase() || '';
+                    const code = card.querySelector('.subject-code')?.innerText.toLowerCase() || '';
+                    
+                    if(title.includes(query) || code.includes(query)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
         });
     </script>
 </body>
