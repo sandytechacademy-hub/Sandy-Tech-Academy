@@ -3,179 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About & Courses | Sandy Tech Academy</title>
-    <!-- AOS Animation Library CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <title>Academic Blog & Info | Sandy Tech Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #050816; --primary-color: #3B82F6; --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #FFFFFF; --text-secondary: #94A3B8; --font-headings: 'Poppins', sans-serif;
+            --font-paragraphs: 'Inter', sans-serif; --max-width: 1280px; --transition: all 0.3s ease;
         }
-
-        body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* Premium Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00d2ff;
-        }
-
-        .logo span {
-            color: #00f5d4;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
-        }
-
-        .nav-links a {
-            color: #a5b4fc;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s ease;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #00f5d4;
-            text-shadow: 0 0 10px #00f5d4;
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, #00d2ff, #00f5d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* About Page Styles */
-        .about-section {
-            padding-top: 140px;
-            text-align: center;
-        }
-
-        .about-hero {
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            padding: 0 20px;
-        }
-
-        .about-hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-
-        .about-hero p {
-            font-size: 1.2rem;
-            color: #94a3b8;
-        }
-
-        .section-title {
-            margin-top: 40px;
-            font-size: 2.2rem;
-        }
-
-        .courses-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 40px 8% 80px 8%;
-            flex-wrap: wrap;
-        }
-
-        .course-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            padding: 30px;
-            border-radius: 15px;
-            width: 340px;
-            text-align: left;
-            transition: 0.4s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            border-color: #00f5d4;
-            box-shadow: 0 10px 30px rgba(0, 245, 212, 0.15);
-        }
-
-        .course-card h4 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #00f5d4;
-        }
-
-        .course-card p {
-            color: #94a3b8;
-            font-size: 1rem;
-            line-height: 1.5;
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-paragraphs); }
+        .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 8, 22, 0.7); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(16px); }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+        .nav-logo img { height: 36px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.925rem; font-weight: 500; }
+        .nav-link.active { color: var(--text-main); font-weight: 600; }
+        .nav-actions { display: flex; align-items: center; gap: 1.25rem; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: transparent; border: none; cursor: pointer; }
+        .hamburger span { display: block; width: 24px; height: 2px; background-color: var(--text-main); }
+        .content { padding-top: 10rem; text-align: center; }
+        @media (max-width: 768px) {
+            .nav-menu { position: fixed; top: 4.5rem; left: -100%; width: 100%; height: calc(100vh - 4.5rem); background: var(--bg-color); flex-direction: column; padding: 2rem; gap: 1.5rem; transition: var(--transition); }
+            .nav-menu.active { left: 0; } .hamburger { display: flex; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Premium Navbar -->
-    <nav class="navbar">
-        <div class="logo">Sandy Tech <span>Academy</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About & Courses</a></li>
-        </ul>
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Sandy Tech Academy Logo" onerror="this.src='images/logo.png'">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="notes.html" class="nav-link">Diploma Notes</a></li>
+                <li><a href="Course.html" class="nav-link">Degree Notes</a></li>
+                <li><a href="programming.html" class="nav-link">Programming</a></li>
+                <li><a href="gallery.html" class="nav-link">Projects</a></li>
+                <li><a href="Course.html" class="nav-link">Downloads</a></li>
+                <li><a href="about.html" class="nav-link active">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button style="background:transparent; border:none; color:var(--text-secondary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+                <button class="hamburger" id="menuToggle" aria-label="Open Mobile Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </nav>
-
-    <!-- About Content -->
-    <section class="about-section">
-        <div class="about-hero" data-aos="zoom-in">
-            <h2>About <span class="gradient-text">Our Academy</span></h2>
-            <p>Sandy Tech Academy is dedicated to empowering students with next-gen technical skills, premium coding guidance, and high-end modern development practices.</p>
-        </div>
-
-        <h2 class="section-title" data-aos="fade-up">Featured Programs</h2>
-        
-        <div class="courses-grid">
-            <div class="course-card" data-aos="flip-left">
-                <h4>Full Stack Development</h4>
-                <p>Master HTML, CSS, JavaScript, React, and Node.js from scratch with real-world production level code.</p>
-            </div>
-            <div class="course-card" data-aos="flip-right" data-aos-delay="200">
-                <h4>UI/UX & Modern Effects</h4>
-                <p>Learn to build premium websites with high-end micro-interactions, canvas elements, and smooth web animations.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- AOS JS Library & Custom JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <main class="container content">
+        <h2>Sandy Tech Academy Blog</h2>
+        <p style="color: var(--text-secondary); margin-top: 1rem;">Engineering insights, updates, and deep dives into curriculum architectures.</p>
+    </main>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
         });
     </script>
 </body>
