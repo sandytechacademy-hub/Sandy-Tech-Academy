@@ -3,55 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandy Tech Academy</title>
+    <title>Sandy Tech Academy | Home</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background-color: #0b0f19; color: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0b0f19; color: #ffffff; }
 
-        /* Navbar */
-        nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; border-bottom: 1px solid #222; }
-        .nav-links a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 14px; }
-        .login-btn { background: #00d2ff; padding: 8px 20px; border-radius: 5px; color: #000; font-weight: bold; text-decoration: none; }
+        /* PW Style Top Navbar */
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 8%; background: #0e1424; border-bottom: 1px solid rgba(0, 210, 255, 0.2); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { font-size: 22px; font-weight: bold; color: #00d2ff; text-decoration: none; }
+        .logo span { color: #00f5d4; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin: 0 15px; }
+        .nav-links a { color: #a5b4fc; text-decoration: none; font-size: 15px; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #00f5d4; }
+        .login-btn { background: #00d2ff; color: #0b0f19; padding: 8px 22px; border-radius: 6px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .login-btn:hover { background: #00f5d4; box-shadow: 0 0 15px rgba(0, 245, 212, 0.5); }
 
-        /* Banner */
-        .banner { background: #0056b3; margin: 20px 5%; padding: 40px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .banner h1 { font-size: 2.5rem; }
-        .join-now { background: #ffeb3b; color: #000; padding: 15px 30px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+        /* PW Style Banner Carousel Area */
+        .hero-banner { margin: 100px 8% 40px 8%; background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc); border-radius: 12px; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(67, 100, 247, 0.3); }
+        .banner-text h1 { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1.2; }
+        .banner-text p { font-size: 1.2rem; color: #e0e7ff; margin: 10px 0 20px 0; }
+        .join-btn { background: #ffeb3b; color: #000; padding: 14px 35px; border-radius: 8px; font-size: 18px; font-weight: bold; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .join-btn:hover { transform: scale(1.05); }
 
-        /* Grid */
-        .main-content { display: flex; align-items: center; padding: 50px 5%; gap: 50px; }
-        .get-started { background: #5a32a3; color: #fff; padding: 12px 25px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 20px; }
+        /* Trusted Platform Section */
+        .trusted-section { display: flex; align-items: center; justify-content: space-between; padding: 40px 8%; gap: 50px; }
+        .trusted-left { flex: 1; }
+        .trusted-left h2 { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
+        .trusted-left h2 span { color: #00f5d4; }
+        .trusted-left p { color: #94a3b8; font-size: 16px; margin-bottom: 25px; line-height: 1.6; }
+        .get-started-btn { background: #6366f1; color: white; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
+        .get-started-btn:hover { background: #4f46e5; }
+        
+        .trusted-right { flex: 1; display: flex; justify-content: center; }
+        .avatar-glow { width: 280px; height: 280px; background: rgba(0, 210, 255, 0.1); border: 2px dashed #00d2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00f5d4; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="font-weight:bold; font-size:20px;">Sandy Tech Academy</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="course.html">Courses</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="notes.html">Notes</a>
-        </div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Sandy Tech <span>Academy</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="course.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="notes.html">Notes</a></li>
+        </ul>
         <a href="login.html" class="login-btn">Login/Register</a>
     </nav>
 
-    <div class="banner">
-        <div>
-            <h1>Premium Tech Courses 2027</h1>
-            <p>For Aspiring Developers</p>
+    <div class="hero-banner">
+        <div class="banner-text">
+            <h1>Yakeen 2.0 2027<br>For Tech Aspirants</h1>
+            <p>Get Premium Tech Education At Most Affordable Prices</p>
+            <a href="course.html" class="join-btn">Join Now</a>
         </div>
-        <a href="course.html" class="join-now">Join Now</a>
+        <div style="font-size: 80px;">💻</div>
     </div>
 
-    <section class="main-content">
-        <div>
-            <h1>Bharat's Trusted & Affordable Educational Platform</h1>
-            <p>Unlock your potential with Sandy Tech Academy.</p>
-            <a href="course.html" class="get-started">Get Started</a>
+    <section class="trusted-section">
+        <div class="trusted-left">
+            <h2>Bharat's <span>Trusted & Affordable</span> Educational Platform</h2>
+            <p>Unlock your potential by signing up with Sandy Tech Academy. The most advanced yet pocket-friendly coding and technology learning ecosystem.</p>
+            <a href="course.html" class="get-started-btn">Get Started</a>
         </div>
-        <div style="background: #1e293b; padding: 40px; border-radius: 50%; border: 2px dashed #00d2ff;">
-            [ Illustration Space ]
+        <div class="trusted-right">
+            <div class="avatar-glow">Premium Learning</div>
         </div>
     </section>
 
