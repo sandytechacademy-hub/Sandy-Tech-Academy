@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSBTE Diploma Notes Library | Sandy Tech Academy</title>
+    <meta name="description" content="Access semester-wise MSBTE polytechnic diploma notes, model answer papers, and syllabus PDFs instantly.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-screen">
+        <div class="loader-content">
+            <div class="loader-logo">STA</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Custom Animated Cursor Glow -->
+    <div id="cursor-glow" class="cursor-glow"></div>
+
+    <!-- Background Ambient Gradients & Blobs -->
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Sticky Glass Navbar -->
+    <header id="navbar" class="glass-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-mark">STA</span>
+                <span class="logo-text">Sandy Tech</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="diploma-notes.html" class="nav-link active">Diploma Notes</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="index.html#cta" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <a href="#notes-grid" class="btn btn-primary ripple magnetic">Get Notes</a>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+
+        <!-- Diploma Hero Section -->
+        <section class="hero-section diploma-hero">
+            <div class="hero-container">
+                <div class="hero-badge fade-up">
+                    <span class="badge-dot"></span> MSBTE Polytechnic Notes Portal <span class="badge-arrow">→</span>
+                </div>
+                <h1 class="hero-title fade-up">
+                    Semester-Wise Diploma Notes
+                </h1>
+                <p class="hero-subtitle fade-up">
+                    Pristine, examiner-verified lecture notes, model answer papers, and lab manuals designed according to the latest MSBTE I-Scheme & K-Scheme syllabus.
+                </p>
+
+                <!-- Search and Semester Tabs Controls -->
+                <div class="diploma-controls fade-up">
+                    <div class="search-bar-wrapper glass-card">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="notes-search" placeholder="Search by subject name, code (e.g., 22412), or topic..." aria-label="Search notes">
+                    </div>
+                    
+                    <!-- Semester 1-6 Navigation Tabs -->
+                    <div class="semester-tabs-container">
+                        <button class="sem-tab active" data-sem="all">All Semesters</button>
+                        <button class="sem-tab" data-sem="sem-1">Sem 1</button>
+                        <button class="sem-tab" data-sem="sem-2">Sem 2</button>
+                        <button class="sem-tab" data-sem="sem-3">Sem 3</button>
+                        <button class="sem-tab" data-sem="sem-4">Sem 4</button>
+                        <button class="sem-tab" data-sem="sem-5">Sem 5</button>
+                        <button class="sem-tab" data-sem="sem-6">Sem 6</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Notes Highlight Section -->
+        <section class="recent-notes-section">
+            <div class="container">
+                <div class="section-header-compact">
+                    <h2>⚡ Recently Updated Notes</h2>
+                    <span class="update-tag">Updated for 2026 Exams</span>
+                </div>
+                <div class="recent-notes-grid">
+                    <div class="glass-card recent-note-card card-lift fade-up">
+                        <div class="recent-meta">
+                            <span class="subject-code-tag">CO4I • 22412</span>
+                            <span class="date-tag">2 days ago</span>
+                        </div>
+                        <h4>Java Programming (OOP)</h4>
+                        <p>Complete model answers and chapter-wise practical code snippets.</p>
+                        <div class="recent-actions">
+                            <button class="btn btn-sm btn-secondary preview-btn" data-subject="Java Programming">Preview</button>
+                            <button class="btn btn-sm btn-primary download-btn">Download PDF</button>
+                        </div>
+                    </div>
+                    <div class="glass-card recent-note-card card-lift fade-up">
+                        <div class="recent-meta">
+                            <span class="subject-code-tag">IF5I • 22516</span>
+                            <span class="date-tag">3 days ago</span>
+                        </div>
+                        <h4>Operating System (OSY)</h4>
+                        <p>Linux commands, scheduling algorithms, and important viva questions.</p>
+                        <div class="recent-actions">
+                            <button class="btn btn-sm btn-secondary preview-btn" data-subject="Operating System">Preview</button>
+                            <button class="btn btn-sm btn-primary download-btn">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Subject Cards Grid Section -->
+        <section id="notes-grid" class="notes-library-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title fade-up">Complete Subject Repository</h2>
+                    <p class="section-desc fade-up">Select your semester to access structured notes, micro-projects, and question banks.</p>
+                </div>
+
+                <div class="notes-responsive-grid" id="notes-cards-container">
+
+                    <!-- Subject 1: Sem 1 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-1" data-subject="english basic mathematics english">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">311303</span>
+                            <span class="scheme-pill">K-Scheme</span>
+                        </div>
+                        <h3>Basic Mathematics</h3>
+                        <p>Logarithms, matrices, trigonometry, and derivative formula sheets with solved examples.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 14 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 2: Sem 2 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-2" data-subject="applied science physics chemistry">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">312308</span>
+                            <span class="scheme-pill">K-Scheme</span>
+                        </div>
+                        <h3>Applied Science</h3>
+                        <p>Physics and chemistry numerical notes, diagrams, and practical manual solutions.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 18.5 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 3: Sem 3 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-3" data-subject="data structures using c dsu">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">22317</span>
+                            <span class="scheme-pill">I-Scheme</span>
+                        </div>
+                        <h3>Data Structures Using C</h3>
+                        <p>Arrays, linked lists, stacks, queues, trees, and sorting algorithm handwritten notes.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 22 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 4: Sem 4 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-4" data-subject="java programming oop">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">22412</span>
+                            <span class="scheme-pill">I-Scheme</span>
+                        </div>
+                        <h3>Object Oriented Programming (Java)</h3>
+                        <p>Classes, inheritance, multithreading, exception handling, and GUI applets notes.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 25 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 5: Sem 5 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-5" data-subject="software engineering ste">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">22518</span>
+                            <span class="scheme-pill">I-Scheme</span>
+                        </div>
+                        <h3>Software Engineering</h3>
+                        <p>SDLC models, agile methodology, UML diagrams, testing techniques, and project management.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 16 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 6: Sem 6 -->
+                    <div class="glass-card note-item-card card-lift fade-up" data-semester="sem-6" data-subject="management man capstone project">
+                        <div class="note-card-header">
+                            <span class="subject-code-pill">22601</span>
+                            <span class="scheme-pill">I-Scheme</span>
+                        </div>
+                        <h3>Management & Capstone Project</h3>
+                        <p>Industrial management principles, safety measures, entrepreneurship, and capston execution guide.</p>
+                        <div class="note-card-footer">
+                            <span class="file-size">PDF • 12 MB</span>
+                            <div class="card-btn-group">
+                                <button class="btn btn-sm btn-secondary preview-btn">Preview</button>
+                                <button class="btn btn-sm btn-primary download-btn">Download</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Preview Modal Overlay -->
+        <div id="preview-modal" class="modal-overlay">
+            <div class="glass-card modal-content-box">
+                <div class="modal-header">
+                    <h3>Document Preview</h3>
+                    <button id="modal-close" class="modal-close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="preview-doc-placeholder">
+                        <div class="doc-icon">📄</div>
+                        <h4 id="preview-title">Loading Subject Notes...</h4>
+                        <p>MSBTE Verified Syllabus Unit 1 to Unit 6 Complete Overview.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="modal-dismiss">Close</button>
+                    <button class="btn btn-primary" id="modal-download-action">Download Full PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <section id="cta" class="cta-section">
+            <div class="container">
+                <div class="glass-card cta-banner fade-up">
+                    <div class="cta-glow"></div>
+                    <h2>Score 90+ in Your MSBTE Exams</h2>
+                    <p>Leverage our meticulously prepared notes and micro-project templates today.</p>
+                    <div class="cta-buttons">
+                        <a href="#notes-grid" class="btn btn-primary btn-lg ripple magnetic">Browse All Semesters</a>
+                        <a href="courses.html" class="btn btn-secondary btn-lg ripple magnetic">Explore Advanced Courses</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo">
+                    <span class="logo-mark">STA</span>
+                    <span class="logo-text">Sandy Tech</span>
+                </a>
+                <p>Empowering polytechnic and diploma students with pristine resources, model answers, and engineering notes.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="YouTube">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <h4>Academy</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="diploma-notes.html">Diploma Notes</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Resources</h4>
+                <a href="courses.html">Courses</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="#cta">Contact</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sandy Tech Academy. All rights reserved. MSBTE Aligned Polytechnic Portal.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to Top">↑</button>
+
+    <!-- JavaScript Script -->
+    <script src="script.js"></script>
+    <script>
+        /* Specific Interactive Logic for Diploma Notes Page */
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('notes-search');
+            const semTabs = document.querySelectorAll('.sem-tab');
+            const noteCards = document.querySelectorAll('.note-item-card');
+            
+            // Modal Elements
+            const modal = document.getElementById('preview-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalDismiss = document.getElementById('modal-dismiss');
+            const previewTitle = document.getElementById('preview-title');
+            const previewBtns = document.querySelectorAll('.preview-btn');
+
+            // Semester Tab Filtering
+            semTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    semTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const sem = tab.getAttribute('data-sem');
+
+                    noteCards.forEach(card => {
+                        if (sem === 'all' || card.getAttribute('data-semester') === sem) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Live Search Filtering
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+
+                noteCards.forEach(card => {
+                    const text = card.innerText.toLowerCase();
+                    if (text.includes(term)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // Preview Modal Triggers
+            previewBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const card = e.target.closest('.glass-card');
+                    const subjectName = card.querySelector('h3').innerText;
+                    previewTitle.innerText = subjectName + ' - Syllabus & Notes Preview';
+                    modal.classList.add('active');
+                });
+            });
+
+            const closeModal = () => modal.classList.remove('active');
+            modalClose.addEventListener('click', closeModal);
+            modalDismiss.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
